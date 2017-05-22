@@ -1,0 +1,76 @@
+<html dir="LTR"><head>
+        <link href="ErrorPageTemplate.css" rel="stylesheet" type="text/css">
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <title>Enquadramento Proibido</title>
+
+        <script language="javascript" src="errorPageStrings.js" type="text/javascript">
+        </script>
+        <script language="javascript" src="httpErrorPagesScripts.js" type="text/javascript">
+        </script>
+    </head>
+
+    <body onload="initUnframeContent();">
+
+        <table width="450" border="0" cellspacing="0" cellpadding="0">
+
+        <!-- Error title -->
+            <tbody><tr>
+                <td width="60" align="left" id="infoIconAlign" valign="top" rowspan="2">
+                    <img id="infoIcon" alt="Ícone de informações" src="red_x.png">
+                </td>
+                <td width="*" align="left" id="unableDisplayAlign" valign="middle">
+                    <h1 id="unableDisplay">Este conteúdo não pode ser exibido em um quadro</h1>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right" class="errorCodeAndDivider" id="errorAlign">
+                    <div class="divider"></div>
+                </td>
+            </tr>
+
+        <!-- Error Body -->
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                  <p id="errorExplanation1">Para ajudar a proteger a segurança das informações que você inserir neste site, o fornecedor deste conteúdo não permite que o conteúdo seja exibido em um quadro.</p>
+                </td>
+            </tr>
+
+        <!-- What you can do -->
+            <tr id="whatToDoIntro">
+                <td>
+                    &nbsp;
+                </td>
+                <td id="whatToTryAlign">
+                    <h2 id="whatToTry">Você pode tentar:</h2>
+                </td>
+            </tr>
+
+        <!-- open in new window -->
+            <tr id="whatToDoBody">
+                <td>&nbsp;</td>
+                <td id="openNewAlign">
+                    <h4>
+                        <table>
+                            <tbody><tr>
+                                <td>
+                                    <img class="actionIcon" alt="" src="bullet.png" border="0">
+                                </td>
+                                <td>
+                                    <a href="javascript:makeNewWindow();"><id id="openNewWindow">Abrir este conteúdo em uma nova janela</id></a>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </h4>
+                </td>
+            </tr>
+
+     
+        </tbody></table>
+    
+</body></html>

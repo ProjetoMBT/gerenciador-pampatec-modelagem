@@ -1,0 +1,196 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="j_idt2"><link href="/GerenciadorPampatec/javax.faces.resource/theme.css.jsf?ln=primefaces-aristo" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/fa/font-awesome.css.jsf?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/login.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/projeto.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/font-awesome.min.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/animation.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/bootstrap.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/outro.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/sweetalert.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/ns-default.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/ns-style-growl.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/components.css.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery.js.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery-plugins.js.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/core.js.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/components.js.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/jsf.js.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=javax.faces" type="text/javascript"></script><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='pt_BR';}</script><script src="/GerenciadorPampatec/javax.faces.resource/bootstrap-3.3.6.min.js.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba?ln=js" type="text/javascript"></script>            
+
+        <title>Acessar o Sistema - Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+            </style>
+
+            <script>
+                /**
+                 * Metodo sendo chamado no "a" de "esqueci a senha"
+                 * Para trazer o campo do EMAIL dentro do modal sempre vazio  
+                 * @returns {undefined}
+                 */
+                function limpaCampoEsqueciSenha() {
+                    document.getElementById("formularioRecuperarSenha:email").value = "";
+                }
+                function exibeCarregando2() {
+                    document.getElementById("carregando2").setAttribute("class", "carregando");
+
+                }
+                function escondeCarregando2() {
+                    document.getElementById("carregando2").setAttribute("class", "invisivel");
+
+                }
+            </script></head><body>
+            <div class="row">
+                <br><br>
+                <div class="col-md-2"></div>
+                <div class="col-md-4 form-horizontal well bs-component">
+                    <h1>Cadastre-se agora</h1>
+                    <hr>
+                    <div id="empreendedorCadastro">
+<form name="formularioDeCadastro" id="formularioDeCadastro" action="/GerenciadorPampatec/loginEmpreendedor.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba" enctype="application/x-www-form-urlencoded" method="post">
+<input name="formularioDeCadastro" type="hidden" value="formularioDeCadastro">
+
+                            <!--&lt;h:message for="botaoRecuperarSenha" errorClass="mensagemErro" infoClass="mensagemSucesso" id="mensagemErro"/&gt;-->
+                            <div align="center" class="col-md-4">
+                                <!--&lt;h:message for="botaoLogin" errorClass="erro" infoClass="erro"&gt; &lt;/h:message&gt;-->
+                            </div>
+                            <div class="col-md-12">
+                                O Plano de Neg\C3\B3cio define o que sua empresa faz, como ela vai gerar lucro e se sustentar no mercado. Definir o Plano \C3\A9 o primeiro passo para um neg\C3\B3cio de sucesso.
+                            </div>
+
+                            <!--                    
+                            &lt;div class="col-md-12"&gt;
+                                Insira seu nome&lt;h:inputText class="form-control" id="nomeInput" value="#-{loginBean.user}"&gt;&lt;/h:inputText&gt;
+                            &lt;/div&gt;
+                            &lt;div class="col-md-12"&gt;
+                                Informe seu CPF&lt;h:inputText class="form-control" id="cpfInput" value="#-{loginBean.senha}"&gt;&lt;/h:inputText&gt;
+                                &lt;br/&gt;  
+                                
+                            &lt;/div&gt;
+                            -->
+
+                            <div align="left" class="col-md-5"></div>
+                            <div class="col-md-12">
+                                <br><br><br>
+                                Efetue o cadastro para come\C3\A7ar.
+                                <br>
+                            </div>
+                            <div align="left" class="col-md-1 modal-footer">
+                            </div>
+
+                            <div align="left" class="col-md-2 modal-footer">
+                            </div>
+                            <div align="center" class="col-md-5 modal-footer">
+                            </div>                       
+
+                            <div align="left" class="col-md-5 modal-footer text-center"><button name="formularioDeCadastro:botaoContinuaCadastro" title="Cadastre-se para come\C3\A7ar" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formularioDeCadastro:botaoContinuaCadastro" role="button" aria-disabled="false" style="padding: 5px 6px;" onclick="" type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-user"></span><span class="ui-button-text ui-c">Cadastrar</span></button>
+                            </div><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" type="hidden" value="50248136121550440:-5435606155937807246" autocomplete="off">
+</form>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 form-horizontal well bs-component" style="margin-left: 1%;">
+                    <h1>Acesse sua conta</h1>
+                    <hr>
+                    <div id="empreendedorLogin">
+<form name="formularioDeLogin" id="formularioDeLogin" action="/GerenciadorPampatec/loginEmpreendedor.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba" enctype="application/x-www-form-urlencoded" method="post">
+<input name="formularioDeLogin" type="hidden" value="formularioDeLogin">
+
+
+                            <div class="mensagemErroLogin">
+                            </div>
+                            <div title="Digite seu email ou CPF" class="col-md-12">
+                                Insira seu E-mail ou CPF
+                                <input name="formularioDeLogin:emailInput" class="form-control" id="formularioDeLogin:emailInput" type="text">
+                            </div>
+                            <div title="Digite sua senha" class="col-md-12">
+                                Senha
+                                <input name="formularioDeLogin:senhaInput" class="form-control" id="formularioDeLogin:senhaInput" type="password" value="">
+                            </div> 
+                            <div title="Recupere sua senha" class="col-md-12">
+                                <a onclick="limpaCampoEsqueciSenha()" href="#myModal" rel="modal" data-toggle="modal">Esqueci minha senha</a>
+                                <br>
+                            </div> 
+                            <div align="left" class="col-md-1 modal-footer">
+                            </div>
+
+                            <div align="left" class="col-md-2 modal-footer">
+                            </div>
+                            <div align="center" class="col-md-5 modal-footer">
+                            </div>
+                            <div align="center" class="col-md-5 modal-footer"><button name="formularioDeLogin:botaoLogin" title="Acesse sua conta" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formularioDeLogin:botaoLogin" role="button" aria-disabled="false" style="padding: 5px 12px;" onclick="" type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-sign-in"></span><span class="ui-button-text ui-c">Acessar</span></button>
+                            </div><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" type="hidden" value="50248136121550440:-5435606155937807246" autocomplete="off">
+</form>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+
+            <!-- Modal de Recupera&ccedil;&atilde;o de Senha -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+<form name="formularioRecuperarSenha" id="formularioRecuperarSenha" action="/GerenciadorPampatec/loginEmpreendedor.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba" enctype="application/x-www-form-urlencoded" method="post">
+<input name="formularioRecuperarSenha" type="hidden" value="formularioRecuperarSenha">
+
+
+                        <!-- Conte&uacute;do do Modal -->
+                        <div class="modal-content panel-success">
+                            <div class="modal-header fundoVerde">
+                                <button class="close" aria-hidden="true" type="button" data-dismiss="modal">\C3\97</button>
+                                <h4 class="modal-title">Esqueceu sua Senha?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <fieldset>
+                                    <div class="col-md-12">
+                                        Insira seu e-mail utilizado para Login para que possamos encaminhar as instru\C3\A7\C3\B5es para recupera\C3\A7\C3\A3o de senha.
+
+                                        <input name="formularioRecuperarSenha:email" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" id="formularioRecuperarSenha:email" role="textbox" aria-disabled="false" aria-readonly="false" aria-required="true" type="text" placeholder="Insira o seu e-mail"><span id="formularioRecuperarSenha:teste2"></span>
+                                        <br>
+
+                                    </div>
+                                    <hr>
+
+
+                                    <!--                                    &lt;div class="text-right col-md-12"&gt; 
+                                                                            &lt;div class="col-md-10"&gt;
+                                                                                &lt;button type="button" 
+                                                                                        class="btn btn-default" 
+                                                                                        data-dismiss="modal"&gt;Voltar&lt;/button&gt;
+                                                                            &lt;/div&gt;
+                                    
+                                                                            &lt;h:commandButton id="botaoRecuperarSenha"
+                                                                                             class="btn btn-success" 
+                                                                                             value="Enviar" 
+                                                                                             action="" onclick="exibeCarregando2()"&gt;
+                                                                                &lt;f:ajax execute="@form" render="formularioRecuperarSenha:mensagemErro
+                                                                                        formularioRecuperarSenha:teste2 formularioRecuperarSenha:painelCadastroIncompleto"/&gt;
+                                                                            &lt;/h:commandButton&gt;
+                                    
+                                                                        &lt;/div&gt;-->
+                                </fieldset>
+
+                            </div>
+                            <div class="modal-footer">
+                                <!--                                &lt;div id="carregando2" class="invisivel"&gt;
+                                                                    &lt;h:graphicImage library="images" name="ajax-loader4.gif" alt="Carregando"/&gt;
+                                                                &lt;/div&gt;-->
+                                <button title="Voltar" class="btn btn-default" type="button" data-dismiss="modal">Cancelar</button><input name="formularioRecuperarSenha:botaoRecuperarSenha" title="Enviar" class="btn btn-success" id="formularioRecuperarSenha:botaoRecuperarSenha" onclick="mojarra.ab(this,event,'action','@form','formularioRecuperarSenha:teste2 formularioRecuperarSenha:email');return false" type="submit" value="Enviar Instru\C3\A7\C3\B5es">
+                            </div>
+                        </div>
+                        <!-- Fim do Conte&uacute;do do Modal --><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:2" type="hidden" value="50248136121550440:-5435606155937807246" autocomplete="off">
+</form>
+
+                </div>
+            </div>
+            <!-- Fim do Modal de Recupera&ccedil;&atilde;o de Senha -->
+
+            <!-- In&iacute;cio do footer profissional em HTML5+CCS3  --><!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<form name="rodaPe" id="rodaPe" action="/GerenciadorPampatec/loginEmpreendedor.jsf;jsessionid=9e5664cb779cd5e6659d91ef2dba" enctype="application/x-www-form-urlencoded" method="post">
+<input name="rodaPe" type="hidden" value="rodaPe">
+
+            <!-- In&iacute;cio do footer profissional em HTML5+CCS3  -->
+            <footer class="rodape">
+                <nav>
+                    <hr>
+                    <p>
+                        <small>Copyright \C2\A9 2015-2016 </small> - <strong> Ideiah Solu\C3\A7\C3\B5es em Software</strong>
+                    </p>
+                    <hr>
+                </nav>
+            </footer>
+            <!-- Fim do footer profissional em HTML5+CCS3  --><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:3" type="hidden" value="50248136121550440:-5435606155937807246" autocomplete="off">
+</form>
+            <!-- Fim do footer profissional em HTML5+CCS3  -->
+    <div id="textarea_simulator" style="left: 0px; top: 0px; visibility: hidden; position: absolute;"></div></body></html>

@@ -1,0 +1,778 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="j_idt2"><link href="/GerenciadorPampatec/javax.faces.resource/theme.css.jsf?ln=primefaces-aristo" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/fa/font-awesome.css.jsf?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/animation.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/bootstrap.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/outro.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/projeto.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/font-awesome.min.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/ns-default.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/ns-style-growl.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/sweetalert.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/tabela.css.jsf?ln=css" rel="stylesheet" type="text/css"><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery-plugins.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/core.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><link href="/GerenciadorPampatec/javax.faces.resource/components.css.jsf?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><script src="/GerenciadorPampatec/javax.faces.resource/components.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/jsf.js.jsf?ln=javax.faces" type="text/javascript"></script><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='pt_BR';}</script><script src="/GerenciadorPampatec/javax.faces.resource/bootstrap-3.3.6.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/preavaliacao.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/validaCampo.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/js.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/mensagemFeedBack.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/chamaModal.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/sweetalert.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/sessionManager.js.jsf?ln=js" type="text/javascript"></script> 
+
+        <title>Revisar Plano de Neg\C3\B3cio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script>
+            var andamentoProjeto = 1;
+            var tipoEmpreededor = true;
+            var tempoMaxSessao = 1800;
+
+            /**
+             * 
+             * @returns {undefined}
+             */
+            setTimeout(function () {
+                console.log("Mata a sess\C3\A3o e chama o Bah!");
+                showSweetAlert();
+            }, (tempoMaxSessao - 1) * 1000);
+
+            /**
+             * <p> M\C3\A9todo de gatilho para invalidar a sess\C3\A3o do usu\C3\A1rio, 
+             * caso essa ainda exista indevidamente.</p>
+             * 
+             * @returns {undefined}
+             */
+            function triggerParaInvalidarSessao() {
+                // O metodo \C3\A9 chamado no sweetAlert somente para ativar um controle remoto
+                // esse controle remote aciona um metodo para invalidar a sess\C3\A3o quando o "bah!" \C3\A9 chamado.
+            }
+        </script></head><body onload="carregaPagina(), verificaComentariosRevisar(), timeoutMensagemFeedBack(SALVO), timeoutMensagemFeedBack(ERRO);">
+
+        <!-- In&iacute;cio do menu superior -->
+<form name="menuSuperior" id="menuSuperior" action="/GerenciadorPampatec/view/empreendedor/planoDeNegocio/revisarPlanoDeNegocio.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="menuSuperior" type="hidden" value="menuSuperior">
+
+
+            <!-- Controle Remoto que invalida a sess&atilde;o, ele &eacute; acionado quando o sweetAlert (Bah!) &eacute; chamado --><script type="text/javascript">triggerParaInvalidarSessao = function() {PrimeFaces.ab({s:"menuSuperior:j_idt24",f:"menuSuperior",pa:arguments[0]});}</script>
+            <!-- Fim do Controle Remoto-->            
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="col-md-6">
+                        <h4 style="color: white;">Bem-vindo(a) Teste!</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown"><a class="aComoBotaoMenu" onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt28':'menuSuperior:j_idt28'},'');return false" href="#">In\C3\ADcio</a>
+                            </li>
+                            <!--
+                            &lt;li&gt;
+                                &lt;h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes"&gt;
+                                    Notifica&ccedil;&otilde;es
+                                    &lt;span class="badge"&gt;
+                                        &lt;h:outputText value="#-{notificacoesEmpreendedorBean.quantidadeNotificacoes}"&gt;&lt;/h:outputText&gt; 
+                                    &lt;/span&gt;
+                                    &lt;f:ajax execute="@form" event="click" listener="#-{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/&gt;
+                                &lt;/h:outputLink&gt;
+                            &lt;/li&gt;
+                            -->
+                            <li class="dropdown">
+                                <a class="aComoBotaoMenu" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Planos de Neg\C3\B3cio
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt30':'menuSuperior:j_idt30'},'');return false" href="#">Novo Plano</a>
+                                    </li>
+                                    <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt32':'menuSuperior:j_idt32'},'');return false" href="#">Lista de Planos</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="aComoBotaoMenu" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Op\C3\A7\C3\B5es <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt34':'menuSuperior:j_idt34'},'');return false" href="#">Perfil</a>
+                                    </li>
+                                    <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt36':'menuSuperior:j_idt36'},'');return false" href="#">Sair</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Inicio dos Modais apresentadas -->
+
+            <!-- Modal com as NOTIFICA&Ccedil;&Otilde;ES do usu&aacute;rio -->
+            <!--
+            &lt;div class="modal fade" id="modalNotificacoes" role="dialog"&gt;
+
+                &lt;div class="modal-dialog"&gt;
+
+                    &lt;div class="panel panel-success"&gt;
+                        &lt;div class="panel-heading"&gt;
+                            &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
+                            &lt;h3 class="panel-title"&gt;Notifica&ccedil;&otilde;es&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div class="panel-body" align="center"&gt;
+                            &lt;h:dataTable id="tabelaNotificacoes" value="#-{notificacoesEmpreendedorBean.notificacoes}" var="notificacao"&gt;
+                                &lt;h:column&gt;
+                                    &lt;div class="bordas"&gt;
+                                        &lt;h:outputText value="#-{notificacao.descricao}"/&gt;
+                                        &lt;a href="#-{notificacao.link}"&gt; Clique aqui &lt;/a&gt; Para ver detalhes.
+                                    &lt;/div&gt;
+                                &lt;/h:column&gt;
+                            &lt;/h:dataTable&gt;
+                        &lt;/div&gt;
+                        &lt;div class="panel-footer" align="right"&gt;
+                            &lt;button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar"&gt;Voltar&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+            &lt;/div&gt;
+            -->
+            <!-- Fim do Modal com as NOTIFICA&Ccedil;&Otilde;ES -->
+            <!-- SE&Ccedil;&Atilde;O DO WORKFLOW HORIZONTAL -->
+            <div class="col-md-12 text-center noprint" style="background-color: rgb(0, 168, 89);">
+                <ul id="progressbar">
+                    <li class="active" id="etapa1"><a style="cursor: pointer;" href="../enviarProjeto.jsf">Elabora\C3\A7\C3\A3o</a></li>
+                    <li class="active, etapaAtual etapaSelecionada" id="etapa2"><a style="cursor: pointer;" onclick="mostra_vertical_pre_avaliacao(), addFoco('etapa2')" href="revisarPlanoDeNegocio.jsf">Pr\C3\A9-Avalia\C3\A7\C3\A3o</a></li>
+                    <li id="etapa3" style="cursor: default;"><b>Avalia\C3\A7\C3\A3o</b></li>
+                    <li id="etapa4" style="cursor: default;"><b>Formaliza\C3\A7\C3\A3o</b></li>
+                    <li id="etapa5" style="cursor: default;"><b>Incuba\C3\A7\C3\A3o</b></li>
+                </ul>
+            </div>
+
+            <!-- Fim das modais apresentadas -->
+
+            <!-- SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
+            <div class="col-md-2 text-center estiloDivVertical noprint" id="vertical_etapa_pre_avaliacao">
+                <div class="divPadding text-center"><input name="menuSuperior:botao_resultado_preavaliacao" title="Visualizar resultado do avaliador" disabled="disabled" class="btn btn-success btnWorkflowV" id="menuSuperior:botao_resultado_preavaliacao" onclick="mostraDIV('sessao_resultado_avaliador'), addFocoBotao('menuSuperior:botao_resultado_preavaliacao')" type="button" value="Resultado">
+                    <br>
+                </div>
+                <div class="divPadding text-center"><br>
+                </div>
+
+                <div class="divPadding text-center">
+                    <br>
+                </div>                
+            </div>
+            <!-- FIM DA SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO--><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" type="hidden" value="-3750035741214648615:8776273604754830995" autocomplete="off">
+</form>
+        <!-- Fim do menu superior -->
+
+        <!-- Script para exibi&ccedil;&atilde;o da info do bot&atilde;o SALVAR -->
+        <script>
+
+            function infoSalvar() {
+                $("#modalInfoSalvar").modal();
+            }
+
+            function confirmacaoDeEnvio() {
+                $("#modalInfoDeEnvio").modal();
+            }
+
+            function mostrarFeedBack(id) {
+                var campo = document.getElementById(id);
+                if ($(campo).hasClass("form-control campoFeedBackOn")) {
+                    $(campo).fadeOut(900);
+                    campo.setAttribute("class", "form-control campoFeedBack");
+                } else {
+                    $(campo).fadeIn(900);
+                    campo.setAttribute("class", "form-control campoFeedBackOn");
+                }
+            }
+
+            document.onmouseover = function () {
+                //O cara ta clicando dentro da p\C3\A1gina que a gente usa
+                //esse m\C3\A9todo previne que mude a hash quando navegar dentro do projeto
+                //Utilizado no OnHashChange ali em baixo.
+                window.innerDocClick = true;
+            };
+
+            document.onmouseleave = function () {
+                //O cara tirou o mouse do documento, ent\C3\A3o agora a gente corre o
+                //risco dele clicar no bot\C3\A3o voltar.
+                window.innerDocClick = false;
+            };
+
+
+            window.onhashchange = function () {
+                if (window.innerDocClick) {
+                    //N\C3\B3s mudamos o hash, ent\C3\A3o n\C3\A3o faz diferen\C3\A7a.
+                } else {
+                    //O bot\C3\A3o de voltar foi clicado
+                    botaoVoltar();
+                }
+            };
+
+
+            function botaoVoltar() {
+                alert("Enrrtoiofd");
+            }
+
+            /**
+             * <p> m\C3\A9todo usado para exibir o gif carregando no modal de confirma\C3\A7\C3\A3o de
+             * envio para pre-avalia\C3\A7\C3\A3o </p>
+             * @returns {undefined}
+             */
+            function exibeCarregando() {
+                document.getElementById("carregando").setAttribute("class", "carregando");
+            }
+        </script>
+        <!-- Fim do Script de informa&ccedil;&atilde;o -->
+<form name="formulario_resubmeterplano" id="formulario_resubmeterplano" action="/GerenciadorPampatec/view/empreendedor/planoDeNegocio/revisarPlanoDeNegocio.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="formulario_resubmeterplano" type="hidden" value="formulario_resubmeterplano">
+
+
+            <!-- Notifica&ccedil;&atilde;o Plano salvo com sucesso. --><div id="formulario_resubmeterplano:mensagemSalvamento"></div>
+            <!-- Fim Notifica&ccedil;&atilde;o Plano salvo com sucesso. -->
+
+            <!-- Notifica&ccedil;&atilde;o erro ao submeter. --><div id="formulario_resubmeterplano:mensagemErroSubmissao"></div>
+
+            <!-- In&iacute;cio dos MODAIS exibidos no formul&aacute;rio -->
+
+            <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o SALVAR -->
+            <div class="modal fade" id="modalInfoSalvar" role="dialog">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header fundoVerde">
+                            <button class="close" aria-hidden="true" type="button" data-dismiss="modal">\C3\97</button>
+                            <h3 class="modal-title">Salvar Edi\C3\A7\C3\B5es</h3>
+                        </div>
+                        <div class="modal-body">
+                            Ao clicar no bot\C3\A3o <strong><u>Salvar Plano de Neg\C3\B3cio</u></strong> os campos preenchidos ficam salvos, 
+                            para que voc\C3\AA possa retornar e acabar de preench\C3\AA-los em outro momento.<br><br>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" type="button" data-dismiss="modal">
+                                Voltar para edi\C3\A7\C3\A3o
+                            </button><input name="formulario_resubmeterplano:j_idt50" class="btn btn-success" type="submit" value="Salvar Plano de Neg\C3\B3cio">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Modal de informa&ccedil;&atilde;o do bot&atilde;o Salvar -->
+
+            <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o ENVIAR PARA AVALIA&Ccedil;&Atilde;O -->
+            <div class="modal fade" id="modalInfoDeEnvio" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Conte&uacute;do do Modal -->
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            <div class="modal-header fundoVerde">
+                                <button class="close" aria-hidden="true" type="button" data-dismiss="modal">\C3\97</button>
+                                <h3 class="modal-title">Ressubmeter</h3>
+                            </div>
+                            <div class="modal-body">
+                                Ao clicar no bot\C3\A3o <strong><u>Confirmar Envio</u></strong> suas altera\C3\A7\C3\B5es no Plano de Neg\C3\B3cio ser\C3\A3o submetidas para uma nova avalia\C3\A7\C3\A3o do <strong>Gerente de Relacionamento</strong>. Ap\C3\B3s enviar o Plano de Neg\C3\B3cio, este <strong>n\C3\A3o poder\C3\A1 mais ser editado</strong>.
+                            </div>
+                            <div class="modal-footer">
+                                <div class="invisivel" id="carregando"><img alt="Carregando" src="/GerenciadorPampatec/javax.faces.resource/ajax-loader4.gif.jsf?ln=images">
+                                </div>
+                                <button class="btn btn-default" type="button" data-dismiss="modal">Voltar para a edi\C3\A7\C3\A3o</button><input name="formulario_resubmeterplano:j_idt54" title="Ressubmeter o plano de neg\C3\B3cio" class="btn btn-success" onclick="exibeCarregando()" type="submit" value="Confirmar Envio">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- Fim do Modal de informa&ccedil;&atilde;o do bot&atilde;o Salvar -->
+
+            <!-- Fim dos MODAIS exibidos no formul&aacute;rio -->
+
+
+
+            <div class="classeConteudo esconder-div" id="sessao_revisar_plano_pre_melhoria">
+                <br>
+                <div class="col-md-12 form-horizontal well bs-component" id="form-revisao">
+                    <h1>Revisar Plano de Neg\C3\B3cio</h1><span id="formulario_resubmeterplano:tituloMensagem"></span>
+                    <br>
+                    <br>
+                    <div>
+
+                        <ul class="nav nav-tabs">
+                            <li class="abaPlano active"><a title="Visualizar Informa\C3\A7\C3\B5es" id="tabContato" aria-expanded="true" href="#formParte01" data-toggle="tab">Informa\C3\A7\C3\B5es</a></li>
+                            <li class="abaPlano"><a title="Visualizar O Neg\C3\B3cio" id="tabNegocio" aria-expanded="false" style="color: green;" href="#formParte02" data-toggle="tab">Neg\C3\B3cio <i class="fa fa-check-square" id="idIconContato"></i></a></li>
+                            <li class="abaPlano"><a title="Visualizar An\C3\A1lise de Mercado" id="tabAnaliseMercado" aria-expanded="false" style="color: green;" href="#formParte03" data-toggle="tab">An\C3\A1lise de Mercado <i class="fa fa-check-square" id="idIconContato"></i></a></li>
+                            <li class="abaPlano"><a title="Visualizar Produto de Servi\C3\A7o" id="tabProdutoServico" aria-expanded="false" style="color: green;" href="#formParte04" data-toggle="tab">Produto ou Servi\C3\A7o <i class="fa fa-check-square" id="idIconContato"></i></a></li>
+                            <li class="abaPlano"><a title="Visualizar Gest\C3\A3o de Pessoas" id="tabGestaoPessoas" aria-expanded="false" style="color: green;" href="#formParte05" data-toggle="tab">Gest\C3\A3o de Pessoas <i class="fa fa-check-square" id="idIconContato"></i></a></li>
+                            <li class="abaPlano"><a title="Visualizar Plano Financeiro" id="tabPlanoFinanceiro" aria-expanded="false" style="color: green;" href="#formParte06" data-toggle="tab">Plano Financeiro <i class="fa fa-check-square" id="idIconContato"></i></a></li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+
+                            <!-- &Iacute;nicio da PRIMEIRA PARTE do formul&aacute;rio para Envio de Projeto Referente ao CONTATO -->
+
+                            <div class="tab-pane fade active in" id="formParte01">
+                                <br>
+                                <div id="formularioParte01">
+
+                                    <div class="col-md-12">
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <b>Nome da Empresa ou Projeto</b><br><input name="formulario_resubmeterplano:empresaProjeto" title="NomeEditado" disabled="disabled" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all ui-state-disabled form-control" id="formulario_resubmeterplano:empresaProjeto" role="textbox" aria-disabled="true" aria-readonly="false" type="text" value="NomeEditado">
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <b>Data de submiss\C3\A3o </b><br><input name="formulario_resubmeterplano:dataSubmit" disabled="disabled" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all ui-state-disabled form-control" id="formulario_resubmeterplano:dataSubmit" role="textbox" aria-disabled="true" aria-readonly="false" type="text" value="02/05/2017 12:48:38">
+                                        <br>
+                                    </div>
+
+
+                                    <div class="col-md-4">
+                                        <b>Edital </b><br><input name="formulario_resubmeterplano:edital" disabled="disabled" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all ui-state-disabled form-control" id="formulario_resubmeterplano:edital" role="textbox" aria-disabled="true" aria-readonly="false" type="text" value="2015abc123">
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-12"><div class="ui-datatable ui-widget" id="formulario_resubmeterplano:j_idt62"><div class="ui-datatable-header ui-widget-header ui-corner-top">
+                                                Empreendedores
+                                            </div><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formulario_resubmeterplano:j_idt62_head"><tr role="row"><th class="ui-state-default" id="formulario_resubmeterplano:j_idt62:j_idt64" role="columnheader" aria-label="Nome"><span class="ui-column-title">Nome</span></th><th class="ui-state-default" id="formulario_resubmeterplano:j_idt62:j_idt66" role="columnheader" aria-label="CPF"><span class="ui-column-title">CPF</span></th><th class="ui-state-default" id="formulario_resubmeterplano:j_idt62:j_idt68" role="columnheader" aria-label="E-Mail"><span class="ui-column-title">E-Mail</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formulario_resubmeterplano:j_idt62_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell">Teste</td><td role="gridcell">96259283245</td><td role="gridcell">testetestezin@gmail.com</td></tr></tbody></table></div></div>
+                                        <br>
+                                    </div>
+
+
+                                    <div class="col-md-3"></div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Fim da primeira parte do formul&aacute;rio -->
+
+                            <!-- &Iacute;nicio da SEGUNDA PARTE do formul&aacute;rio para Envio de Projeto Referente ao NEG&Oacute;CIO -->
+
+                            <div class="tab-pane fade" id="formParte02">
+
+                                <div id="formularioParte02">
+
+                                    <!-- Campo Segmento de Cliente -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Segmento de Clientes* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt76" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt76"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroSegmento"></span><br>
+                                        Para quem criamos valor? Quais s\C3\A3o os nossos clientes mais importantes? 
+                                        <textarea name="formulario_resubmeterplano:segmentoDeClientes1" class="form-control" id="formulario_resubmeterplano:segmentoDeClientes1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="3">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:segmentoDeClientes3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all form-control campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:segmentoDeClientes3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="20" readonly="readonly"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- Campo Proposta de Valor -->
+
+                                    <div class="col-md-12 espaco">
+                                        <b>Proposta de Valor* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt83" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt83"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroProposta"></span><br>
+                                        Que valor proporcionamos aos nossos clientes? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou servi\C3\A7os oferecemos a cada segmento de mercado?
+                                        <textarea name="formulario_resubmeterplano:propostaDeValor1" class="form-control" id="formulario_resubmeterplano:propostaDeValor1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="6">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:propostaDeValor3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all form-control campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:propostaDeValor3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="20" readonly="readonly"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- Campo Atividades Chave -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Atividades Chave* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt90" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt90"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroAtividades"></span><br>
+                                        Que atividades chave requerem nossas propostas de valor? Nossos canais de distribui\C3\A7\C3\A3o?
+                                        <textarea name="formulario_resubmeterplano:atividadesChave1" class="form-control" id="formulario_resubmeterplano:atividadesChave1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="6">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:atividadesChaves3" class="form-control campoFeedBack" id="formulario_resubmeterplano:atividadesChaves3" style="cursor: not-allowed; resize: none;" rows="5" readonly="readonly"></textarea>                                        
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <br>
+                                    <hr>
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4 text-center"><button name="formulario_resubmeterplano:botaoSalvar2" title="Salvar a revis\C3\A3o do projeto." class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_resubmeterplano:botaoSalvar2" role="button" aria-disabled="false" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:botaoSalvar2",e:"click",p:"formulario_resubmeterplano:botaoSalvar2",u:"formulario_resubmeterplano:mensagemSalvamento",onsu:function(data,status,xhr){funcaoAjaxSalvoPrimeFaces();}});' type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Revis\C3\A3o</span></button>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+
+                            <!-- Fim da segunda parte do formul&aacute;rio -->
+
+                            <!-- &Iacute;nicio da TERCEIRA PARTE do formul&aacute;rio para Envio de Projeto Referente a AN&Aacute;LISE DE MERCADO -->
+
+                            <div class="tab-pane fade" id="formParte03">
+                                <div id="formularioParte03">
+
+                                    <!-- Campo Rela&ccedil;&otilde;es com Cliente -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Rela\C3\A7\C3\B5es com clientes* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt105" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt105"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroRelacoes"></span><br>
+                                        Que tipo de rela\C3\A7\C3\A3o esperam os diferentes segmentos de mercado? Que tipo de rela\C3\A7\C3\B5es temos estabelecido?
+                                        <textarea name="formulario_resubmeterplano:relacaoClientes1" class="form-control" id="formulario_resubmeterplano:relacaoClientes1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="5">Editado</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:relacaoClientes3" disabled="disabled" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all ui-state-disabled campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:relacaoClientes3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Parcerias Chave -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Parcerias chave* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt113" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt113"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroParcerias"></span><br>
+                                        Quem s\C3\A3o nossos parceiros chave? Que recursos chave adquirimos de nossos parceiros?
+                                        <textarea name="formulario_resubmeterplano:parceriasChaves1" class="form-control" id="formulario_resubmeterplano:parceriasChaves1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="6">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:parceriasChaves3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:parceriasChaves3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Canais -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Canais* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt121" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt121"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroCanais"></span><br>
+                                        Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente? Quais t\C3\AAm melhores resultados?
+                                        <textarea name="formulario_resubmeterplano:canais1" class="form-control" id="formulario_resubmeterplano:canais1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="6">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:canais3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:canais3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Recursos Principais -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Recursos principais* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt129" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt129"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroRecursos"></span><br>
+                                        Que recursos chave requerem nossas propostas de valor? Nossos canais de distribui\C3\A7\C3\A3o? Rela\C3\A7\C3\B5es com clientes? Fontes de renda?
+                                        <textarea name="formulario_resubmeterplano:recursosPrincipais1" class="form-control" id="formulario_resubmeterplano:recursosPrincipais1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="6">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:recursosPrincipais3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:recursosPrincipais3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Concorrentes -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Concorrentes*</b><br><span id="formulario_resubmeterplano:mensagemErroConcorrentes"></span><br>
+                                        Quem s\C3\A3o nossos concorrentes? como trabalham?
+                                        <textarea name="formulario_resubmeterplano:concorrentes1" class="form-control" id="formulario_resubmeterplano:concorrentes1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="5">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:concorrentes3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:concorrentes3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-4"><br></div>
+                                    <div align="center" class="col-md-4"><button name="formulario_resubmeterplano:botaoSalvar3" title="Salvar a revis\C3\A3o do projeto." class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_resubmeterplano:botaoSalvar3" role="button" aria-disabled="false" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:botaoSalvar3",e:"click",p:"formulario_resubmeterplano:botaoSalvar3",u:"formulario_resubmeterplano:mensagemSalvamento",onsu:function(data,status,xhr){funcaoAjaxSalvoPrimeFaces();}});' type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Revis\C3\A3o</span></button>
+                                    </div>
+                                    <div class="col-md-4 text-right"></div>
+                                </div>
+
+                            </div>
+                            <!-- Fim da terceira parte do formul&aacute;rio -->
+
+                            <!-- &Iacute;nicio da QUARTA PARTE do formul&aacute;rio para Envio de Projeto Referente ao PRODUTO DE SERVI&Ccedil;O -->
+
+                            <div class="tab-pane fade" id="formParte04">
+                                <div id="formularioParte04">
+
+                                    <!-- Campo Est&aacute;gio de Evolu&ccedil;&atilde;o -->
+                                    <div class="col-md-12">
+                                        <b>Est\C3\A1gio de evolu\C3\A7\C3\A3o* </b>
+                                        <br>
+                                        Qual o est\C3\A1gio atual de evolu\C3\A7\C3\A3o do produto ou servi\C3\A7o proposto?
+                                        <span class="checkbox" id="formulario_resubmeterplano:abc1"><select name="formulario_resubmeterplano:estagioDeEvolucao1" class="form-control" id="formulario_resubmeterplano:estagioDeEvolucao1" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:estagioDeEvolucao1 formulario_resubmeterplano:mensagemSalvamento formulario_resubmeterplano:campoOutro1\\',{\\'onevent\\':funcaoAjaxSalvo})')" size="1">	<option value="Ideia B\C3\A1sica">Ideia B\C3\A1sica</option>
+	<option value="Projeto B\C3\A1sico">Projeto B\C3\A1sico</option>
+	<option value="Projeto Detalhado">Projeto Detalhado</option>
+	<option value="Prot\C3\B3tipo Desenvolvido">Prot\C3\B3tipo Desenvolvido</option>
+	<option value="Em teste no mercado">Em teste no mercado</option>
+	<option value="Clientes Pagando">Clientes Pagando</option>
+	<option selected="selected" value="Outro">Outro</option>
+</select>
+                                            <br>
+                                            <div><textarea name="formulario_resubmeterplano:j_idt158" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all form-control semResize ui-inputtextarea-resizable" id="formulario_resubmeterplano:j_idt158" onchange="mojarra.ab('formulario_resubmeterplano:j_idt158',event,'change','@form','formulario_resubmeterplano:campoOutro1 formulario_resubmeterplano:mensagemSalvamento',{'onevent':funcaoAjaxSalvo,'CLIENT_BEHAVIOR_RENDERING_MODE':'OBSTRUSIVE'})" maxlength="299" placeholder="Digite aqui o est\C3\A1gio de evolu\C3\A7\C3\A3o de seu Neg\C3\B3cio" rows="3" cols="20">Digite aqui o est\C3\A1gio de evolu\C3\A7\C3\A3o de seu Neg\C3\B3cio</textarea>
+                                            </div></span>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:estagioEvolucao3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:estagioEvolucao3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Tecnologia e processos (n&atilde;o poluentes) -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Tecnologia e processos (n\C3\A3o poluentes)* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt165" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt165"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroTecnologia"></span><br>
+                                        Como nosso projeto est\C3\A1 alinhado com a preserva\C3\A7\C3\A3o de recursos naturais, sustentabilidade e possui valores nesse sentido?
+                                        <textarea name="formulario_resubmeterplano:tecnologiaProcessos1" class="form-control" id="formulario_resubmeterplano:tecnologiaProcessos1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="2">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:tecnologiaProcessos3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:tecnologiaProcessos3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Potencial de inova&ccedil;&atilde;o tecnol&oacute;gica -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Potencial de inova\C3\A7\C3\A3o tecnol\C3\B3gica* </b><br><span id="formulario_resubmeterplano:mensagemErroInovacao"></span><br>
+                                        Qual a capacidade de gerar produtos ou servi\C3\A7os inovadores, que agreguem o uso de novas tecnologias?
+                                        <textarea name="formulario_resubmeterplano:potencialInovacaoTecnologica1" class="form-control" id="formulario_resubmeterplano:potencialInovacaoTecnologica1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:potencialInovacaoTecnologica3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:potencialInovacaoTecnologica3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Aplica&ccedil;&otilde;es -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Aplica\C3\A7\C3\B5es*</b><br><span id="formulario_resubmeterplano:mensagemErroAplicacoes"></span><br>
+                                        A quem se aplica? como? de que maneira?
+                                        <textarea name="formulario_resubmeterplano:aplicacoes1" class="form-control" id="formulario_resubmeterplano:aplicacoes1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:aplicacoes3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:aplicacoes3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Dificuldades Esperadas -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Dificuldades esperadas*</b><br><span id="formulario_resubmeterplano:mensagemErroDificuldades"></span><br>
+                                        Quais s\C3\A3o nossas principais limita\C3\A7\C3\B5es?
+                                        <textarea name="formulario_resubmeterplano:dificuldadesEsperadas1" class="form-control" id="formulario_resubmeterplano:dificuldadesEsperadas1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:dificuldadesEsperadas3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:dificuldadesEsperadas3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Intera&ccedil;&atilde;o entre empresa e Universidade -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Intera\C3\A7\C3\A3o entre empresa e Universidade* </b><br><span id="formulario_resubmeterplano:mensagemErroInteracao"></span><br>
+                                        Em que sentido seremos parceiros da Universidade? 
+                                        <textarea name="formulario_resubmeterplano:interacaoEmpresaUniversidade1" class="form-control" id="formulario_resubmeterplano:interacaoEmpresaUniversidade1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:interacaoEmpresaUniversidade3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:interacaoEmpresaUniversidade3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Intera&ccedil;&atilde;o entre empresa, comunidade e governo -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Intera\C3\A7\C3\A3o entre empresa, comunidade e governo* </b><br><span id="formulario_resubmeterplano:mensagemErroInteracaoEmpresa"></span><br>
+                                        Qual ser\C3\A1 nossa import\C3\A2ncia para o meio em que estamos inseridos? Teremos rela\C3\A7\C3\A3o com todos os envolvidos?
+                                        <textarea name="formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno1" class="form-control" id="formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="3">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:interacaoEmpresaComunidadeGoverno3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <!-- Infra-estrutura necess&aacute;ria para o desenvolvimento e produ&ccedil;&atilde;o -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Infra-estrutura necess\C3\A1ria para o desenvolvimento e produ\C3\A7\C3\A3o*</b><br><span id="formulario_resubmeterplano:mensagemErroInfraestrutura"></span><br>
+                                        Quanto de espa\C3\A7o ser\C3\A1 necess\C3\A1rio? Mobili\C3\A1rio? Equipamentos?
+                                        <textarea name="formulario_resubmeterplano:infraestrutura1" class="form-control" id="formulario_resubmeterplano:infraestrutura1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="3">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:infraestrutura3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:infraestrutura3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-4"></div>
+                                    <div align="center" class="col-md-4"><button name="formulario_resubmeterplano:botaoSalvar4" title="Salvar a revis\C3\A3o do projeto." class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_resubmeterplano:botaoSalvar4" role="button" aria-disabled="false" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:botaoSalvar4",e:"click",p:"formulario_resubmeterplano:botaoSalvar4",u:"formulario_resubmeterplano:mensagemSalvamento",onsu:function(data,status,xhr){funcaoAjaxSalvoPrimeFaces();}});' type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Revis\C3\A3o</span></button>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+
+                            </div>
+
+                            <!-- Fim da quarta parte do formul&aacute;rio -->
+
+                            <!-- &Iacute;nicio da QUINTA PARTE do formul&aacute;rio para Envio de Projeto Referente a GEST&Atilde;O DE PESSOAS -->
+
+                            <div class="tab-pane fade" id="formParte05">
+                                <div id="formularioParte05">
+
+                                    <!-- Campo Descri&ccedil;&atilde;o da participa&ccedil;&atilde;o acion&aacute;ria -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Descri\C3\A7\C3\A3o da participa\C3\A7\C3\A3o acion\C3\A1ria* </b><br><span id="formulario_resubmeterplano:mensagemErroDescricao"></span><br>
+                                        Haver\C3\A3o s\C3\B3cios? Quanto de participa\C3\A7\C3\A3o ter\C3\A3o?
+                                        <textarea name="formulario_resubmeterplano:participacaoAcionaria1" class="form-control" id="formulario_resubmeterplano:participacaoAcionaria1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="3">Editado</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:participacaoAcionaria3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:participacaoAcionaria3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Potencial de gera&ccedil;&atilde;o de emprego e renda -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Potencial de gera\C3\A7\C3\A3o de emprego e renda* </b><br><span id="formulario_resubmeterplano:mensagemErroPotencial"></span><br>
+                                        Quantos empregos diretos e indiretos ser\C3\A3o criados? Qual estimativa de renda total gerada?
+                                        <textarea name="formulario_resubmeterplano:potencialEmprego1" class="form-control" id="formulario_resubmeterplano:potencialEmprego1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="3">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:potencialEmprego3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:potencialEmprego3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4 text-center"><button name="formulario_resubmeterplano:botaoSalvar5" title="Salvar a revis\C3\A3o do projeto." class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_resubmeterplano:botaoSalvar5" role="button" aria-disabled="false" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:botaoSalvar5",e:"click",p:"formulario_resubmeterplano:botaoSalvar5",u:"formulario_resubmeterplano:mensagemSalvamento",onsu:function(data,status,xhr){funcaoAjaxSalvoPrimeFaces();}});' type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Revis\C3\A3o</span></button>
+                                    </div>
+                                    <div class="col-md-4"></div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Fim da quinta parte do formul&aacute;rio -->
+
+                            <!-- &Iacute;nicio da SEXTA PARTE do formul&aacute;rio para Envio de Projeto Referente ao PLANO FINANCEIRO -->
+
+                            <div class="tab-pane fade" id="formParte06">
+                                <div id="formularioParte06">
+
+                                    <!-- Campo Fontes de receita -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Fontes de receita* <a title="Ajuda com preenchimento" class="ui-commandlink ui-widget" id="formulario_resubmeterplano:j_idt235" aria-label="Ajuda com preenchimento" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:j_idt235"});return false;' href="#">(?)</a></b><br><span id="formulario_resubmeterplano:mensagemErroFontes"></span><br>
+                                        Por que valor est\C3\A3o dispostos a pagar nossos clientes? Por que pagam atualmente? Como pagam atualmente?
+                                        <textarea name="formulario_resubmeterplano:fontesDeReceita1" class="form-control" id="formulario_resubmeterplano:fontesDeReceita1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4">Editado</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:fontesDeReceita3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:fontesDeReceita3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Estrutura de custos -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Estrutura de custos*</b><br><span id="formulario_resubmeterplano:mensagemErroEstruturaCustos"></span><br>
+                                        Quais s\C3\A3o os custos mais importantes inerentes ao nosso modelo de neg\C3\B3cio? Quais s\C3\A3o os recursos chave mais caros? Quais s\C3\A3o as atividades chave mais caras?
+                                        <textarea name="formulario_resubmeterplano:estruturaCustos1" class="form-control" id="formulario_resubmeterplano:estruturaCustos1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="6">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:estruturaCustos3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:estruturaCustos3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Investimento inicial -->
+                                    <div class="col-md-12 espaco">
+                                        <b>Investimento inicial*</b><br><span id="formulario_resubmeterplano:mensagemErroInvestimentoInicial"></span><br>
+                                        Quanto de recurso ser\C3\A1 necess\C3\A1rio para iniciar?
+                                        <textarea name="formulario_resubmeterplano:investimentoInicial1" class="form-control" id="formulario_resubmeterplano:investimentoInicial1" style="resize: none;" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'formulario_resubmeterplano:mensagemSalvamento\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4">.</textarea>
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:investimentoInicial3" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:investimentoInicial3" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                    <!-- Campo Custos Fixos --><span class="col-md-12" id="formulario_resubmeterplano:panelCustoFixo">
+                                        <b>Custos fixos*</b><br>
+                                        Sal\C3\A1rios, Aluguel...
+                                        <div class="ui-datatable ui-widget" id="formulario_resubmeterplano:revisar_custoFixo2"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formulario_resubmeterplano:revisar_custoFixo2_head"><tr role="row"><th class="ui-state-default" id="formulario_resubmeterplano:revisar_custoFixo2:j_idt270" role="columnheader" aria-label="Descri\C3\A7\C3\A3o "><span class="ui-column-title">Descri\C3\A7\C3\A3o </span></th><th class="ui-state-default" id="formulario_resubmeterplano:revisar_custoFixo2:j_idt274" role="columnheader" aria-label="Valor M\C3\A9dio Mensal"><span class="ui-column-title">Valor M\C3\A9dio Mensal</span></th><th class="ui-state-default" id="formulario_resubmeterplano:revisar_custoFixo2:j_idt278" role="columnheader" aria-label="Proje\C3\A7\C3\A3o em 6 Meses"><span class="ui-column-title">Proje\C3\A7\C3\A3o em 6 Meses</span></th><th class="ui-state-default" id="formulario_resubmeterplano:revisar_custoFixo2:j_idt280" role="columnheader" style="width: 8%;" aria-label="Op\C3\A7\C3\B5es"><span class="ui-column-title">Op\C3\A7\C3\B5es</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formulario_resubmeterplano:revisar_custoFixo2_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td class="ui-editable-column" role="gridcell"><div class="ui-cell-editor" id="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt271"><div class="ui-cell-editor-output"><label class="ui-outputlabel ui-widget" id="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt272">Aluguel com o Pampatec</label></div><div class="ui-cell-editor-input"><input name="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt273" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt273" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 96%;" type="text" value="Aluguel com o Pampatec"></div></div></td><td class="ui-editable-column" role="gridcell"><div class="ui-cell-editor" id="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt275"><div class="ui-cell-editor-output">R$ 45</div><div class="ui-cell-editor-input"><input name="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt277" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt277" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 96%;" onkeypress="return SomenteNumero(event);" onchange='PrimeFaces.ab({s:"formulario_resubmeterplano:revisar_custoFixo2:0:j_idt277",e:"change",p:"formulario_resubmeterplano:revisar_custoFixo2:0:j_idt277",u:"formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagemSalvamento",onsu:function(data,status,xhr){funcaoAjaxSalvoPrimeFaces();}});' type="text" maxlength="6" value="45"></div></div></td><td role="gridcell"><label class="ui-outputlabel ui-widget" id="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt279">R$ 270</label></td><td role="gridcell"><div class="ui-row-editor ui-helper-clearfix" id="formulario_resubmeterplano:revisar_custoFixo2:0:j_idt281"><span class="ui-icon ui-icon-pencil"></span><span class="ui-icon ui-icon-check"></span><span class="ui-icon ui-icon-close"></span></div></td></tr><tr class="ui-widget-content ui-datatable-odd" role="row" data-ri="1"><td class="ui-editable-column" role="gridcell"><div class="ui-cell-editor" id="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt271"><div class="ui-cell-editor-output"><label class="ui-outputlabel ui-widget" id="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt272">Prolabore</label></div><div class="ui-cell-editor-input"><input name="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt273" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt273" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 96%;" type="text" value="Prolabore"></div></div></td><td class="ui-editable-column" role="gridcell"><div class="ui-cell-editor" id="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt275"><div class="ui-cell-editor-output">R$ 0</div><div class="ui-cell-editor-input"><input name="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt277" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt277" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 96%;" onkeypress="return SomenteNumero(event);" onchange='PrimeFaces.ab({s:"formulario_resubmeterplano:revisar_custoFixo2:1:j_idt277",e:"change",p:"formulario_resubmeterplano:revisar_custoFixo2:1:j_idt277",u:"formulario_resubmeterplano:colunaValorTotalFixo2 formulario_resubmeterplano:mensagemSalvamento",onsu:function(data,status,xhr){funcaoAjaxSalvoPrimeFaces();}});' type="text" maxlength="6" value="0"></div></div></td><td role="gridcell"><label class="ui-outputlabel ui-widget" id="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt279">R$ 0</label></td><td role="gridcell"><div class="ui-row-editor ui-helper-clearfix" id="formulario_resubmeterplano:revisar_custoFixo2:1:j_idt281"><span class="ui-icon ui-icon-pencil"></span><span class="ui-icon ui-icon-check"></span><span class="ui-icon ui-icon-close"></span></div></td></tr></tbody></table></div></div>
+                                        <br> 
+                                        <div class="col-md-6"><button name="formulario_resubmeterplano:botao_adicionar_nova_linha2" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoPreto" id="formulario_resubmeterplano:botao_adicionar_nova_linha2" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){PrimeFaces.ab({s:"formulario_resubmeterplano:botao_adicionar_nova_linha2",e:"click",p:"formulario_resubmeterplano:botao_adicionar_nova_linha2",u:"formulario_resubmeterplano:revisar_custoFixo2 formulario_resubmeterplano:mensagemSalvamento",onsu:function(data,status,xhr){funcaoAjaxSalvoPrimeFaces();}});},function(event){PrimeFaces.ab({s:"formulario_resubmeterplano:botao_adicionar_nova_linha2"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-plus"></span><span class="ui-button-text ui-c">Adicionar Linha</span></button>
+                                        </div>
+
+                                        <div align="center" class="col-md-6 text-center"><div class="ui-datatable ui-widget" id="formulario_resubmeterplano:colunaValorTotalFixo2"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formulario_resubmeterplano:colunaValorTotalFixo2_head"><tr role="row"><th class="ui-state-default" id="formulario_resubmeterplano:colunaValorTotalFixo2:j_idt288" role="columnheader" aria-label="Proje\C3\A7\C3\A3o total de custos fixos (6 meses)"><span class="ui-column-title">Proje\C3\A7\C3\A3o total de custos fixos (6 meses)</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formulario_resubmeterplano:colunaValorTotalFixo2_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell"><label class="ui-outputlabel ui-widget" id="formulario_resubmeterplano:colunaValorTotalFixo2:0:j_idt289">R$ 270</label></td></tr></tbody></table></div></div>
+                                        </div>                                    
+
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:comentarioCustoFixo2" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:comentarioCustoFixo2" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br></span>
+
+                                    <!-- =========================================================================================================================== -->
+                                    <!-- =========================================================================================================================== -->                                 
+
+                                    <!-- Campo Custos Variaveis --><span class="col-md-12" id="formulario_resubmeterplano:panelCustoVariavel">
+                                        <br>
+                                        <b>Custos vari\C3\A1veis* </b>
+                                        <br>
+                                        Impostos, combust\C3\ADvel, mat\C3\A9ria-prima, comiss\C3\A3o para vendedor... 
+                                        <!--   &lt;f:ajax execute="@form" event="change" listener="#/{projetoBean.salvarProjeto()}"/&gt;-->
+                                        <br>
+                                        <br>
+                                        <br>
+
+                                        <div class="col-md-6">                                            
+                                        </div>
+
+                                        <div align="center" class="col-md-6 text-center"><div class="ui-datatable ui-widget" id="formulario_resubmeterplano:colunaValorTotalVariavel"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formulario_resubmeterplano:colunaValorTotalVariavel_head"><tr role="row"><th class="ui-state-default" id="formulario_resubmeterplano:colunaValorTotalVariavel:j_idt326" role="columnheader" aria-label="Proje\C3\A7\C3\A3o total de custos vari\C3\A1veis (6 meses)"><span class="ui-column-title">Proje\C3\A7\C3\A3o total de custos vari\C3\A1veis (6 meses)</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formulario_resubmeterplano:colunaValorTotalVariavel_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell"><label class="ui-outputlabel ui-widget" id="formulario_resubmeterplano:colunaValorTotalVariavel:0:j_idt327">R$ 0</label></td></tr></tbody></table></div></div>
+                                        </div>
+
+
+                                        <div class="col-md-12 espaco">
+                                        </div>
+                                        <div class="has-success col-md-12 espaco"><textarea name="formulario_resubmeterplano:comentarioCustoVariavel2" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all campoFeedBack ui-inputtextarea-resizable" id="formulario_resubmeterplano:comentarioCustoVariavel2" style="cursor: not-allowed; resize: none;" maxlength="2147483647" rows="5" cols="50" readonly="readonly"></textarea>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <!--  &lt;h:message class="mensagemErro" for="custosvariaveis"/&gt;-->
+                                        <br>
+                                        <br></span>
+
+                                    <!-- =========================================================================================================================== -->
+                                    <!-- =========================================================================================================================== -->                                 
+
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4 text-center"><button name="formulario_resubmeterplano:botaoSalvar6" title="Salvar a revis\C3\A3o do projeto." class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_resubmeterplano:botaoSalvar6" role="button" aria-disabled="false" onclick='PrimeFaces.ab({s:"formulario_resubmeterplano:botaoSalvar6",e:"click",p:"formulario_resubmeterplano:botaoSalvar6",u:"formulario_resubmeterplano:mensagemSalvamento",onsu:function(data,status,xhr){funcaoAjaxSalvoPrimeFaces();}});' type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Revis\C3\A3o</span></button>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+
+                            </div>
+
+                            <!-- Fim da sexta parte do formul&aacute;rio -->
+                            <!-- Fim da s&eacute;tima parte do formul&aacute;rio -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="classeConteudo esconder-div" id="sessao_resultado_avaliador">
+
+                <br>
+                <div class="col-md-12 form-horizontal well bs-component" id="form-resultado">
+                    <h1>Parecer do Gerente de Relacionamentos</h1>
+
+                    <h3>Aten\C3\A7\C3\A3o:</h3>
+                    <p>
+                        Confira a baixo as observa\C3\A7\C3\B5es gerais feitas pelo Gerente de Relacionamentos sobre o resultado do seu plano de neg\C3\B3cio.
+                    </p>
+                    <b>Observa\C3\A7\C3\B5es do Gerente de Relacionamentos </b>
+                    <div class="col-md-12 espaco has-success" id="observacoes2"><textarea name="formulario_resubmeterplano:campoObservacoes2" disabled="disabled" class="form-control semResize" id="formulario_resubmeterplano:campoObservacoes2" onchange="precisaSalvar = true;" rows="10"></textarea>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- INICIO DA DIV DE PRE AVALIA&Ccedil;&Acirc;O PARA PROJETOS COM STATUS SUBMETIDO-->
+
+            <div class="classeConteudo col-md-10" id="sessao_plano_nao_avaliado">
+
+                <h1>Pr\C3\A9-Avalia\C3\A7\C3\A3o - Plano de Neg\C3\B3cio</h1>
+
+
+                <div class="well">
+                    <strong> Situa\C3\A7\C3\A3o: </strong> Este plano de neg\C3\B3cio est\C3\A1 sendo avaliado.
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <br>
+                </div>
+            </div>
+
+            <!-- FINAL DA DIV DE PRE AVALIA&Ccedil;&Acirc;O PARA PROJETOS COM STATUS SUBMETIDO--><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" type="hidden" value="-3750035741214648615:8776273604754830995" autocomplete="off">
+</form>
+<div id="textarea_simulator" style="left: 0px; top: 0px; visibility: hidden; position: absolute;"></div></body></html>

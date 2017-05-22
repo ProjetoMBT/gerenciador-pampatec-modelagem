@@ -1,0 +1,278 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="j_idt2"><link href="/GerenciadorPampatec/javax.faces.resource/theme.css.jsf?ln=primefaces-aristo" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/fa/font-awesome.css.jsf?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery-plugins.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/core.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><link href="/GerenciadorPampatec/javax.faces.resource/components.css.jsf?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><script src="/GerenciadorPampatec/javax.faces.resource/components.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><link href="/GerenciadorPampatec/javax.faces.resource/bootstrap.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/projeto.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/sweetalert.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/outro.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/tabela.css.jsf?ln=css" rel="stylesheet" type="text/css"><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='pt_BR';}</script><script src="/GerenciadorPampatec/javax.faces.resource/bootstrap-3.3.6.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/formulario.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/js.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/sweetalert.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/sessionManager.js.jsf?ln=js" type="text/javascript"></script>
+        
+        <title>Planos de Neg\C3\B3cio - Empreendedor</title>
+       
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+        </style>
+            <!--&lt;meta http-equiv="refresh" content="#-{userBean.tempoMaximoSessao()};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/&gt;-->
+            <script>
+                var tempoMaxSessao = 1800;
+
+                /**
+                 * 
+                 * @returns {undefined}
+                 */
+                setTimeout(function () {
+                    console.log("Mata a sess\C3\A3o e chama o Bah!");
+                    showSweetAlert();
+                }, (tempoMaxSessao - 1) * 1000);
+
+                /**
+                 * <p> M\C3\A9todo de gatilho para invalidar a sess\C3\A3o do usu\C3\A1rio, 
+                 * caso essa ainda exista indevidamente.</p>
+                 * 
+                 * @returns {undefined}
+                 */
+                function triggerParaInvalidarSessao() {
+                    // O metodo \C3\A9 chamado no sweetAlert somente para ativar um controle remoto
+                    // esse controle remote aciona um metodo para invalidar a sess\C3\A3o quando o "bah!" \C3\A9 chamado.
+                }
+            </script></head><body>
+            <!-- In&iacute;cio do menu superior -->
+
+            <!-- CUIDADO AO ABRIR E FECHAR TAGS -->
+<form name="menuSuperior" id="menuSuperior" action="/GerenciadorPampatec/view/empreendedor/paginaBuscaPlanoDeNegocio.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="menuSuperior" type="hidden" value="menuSuperior">
+
+                
+            <!-- Controle Remoto que invalida a sess&atilde;o, ele &eacute; acionado quando o sweetAlert (Bah!) &eacute; chamado --><script type="text/javascript">triggerParaInvalidarSessao = function() {PrimeFaces.ab({s:"menuSuperior:j_idt17",f:"menuSuperior",pa:arguments[0]});}</script>
+            <!-- Fim do Controle Remoto-->    
+           
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="col-md-6">
+                            <h4 style="color: white;">Bem-vindo(a) Teste!</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li class="dropdown">
+<script src="/GerenciadorPampatec/javax.faces.resource/jsf.js.jsf?ln=javax.faces" type="text/javascript"></script>
+<a class="aComoBotaoMenu" onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt21':'menuSuperior:j_idt21'},'');return false" href="#">In\C3\ADcio</a>
+                                </li>
+                                
+
+                                <li class="dropdown">
+                                    <a class="aComoBotaoMenu" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Planos de Neg\C3\B3cio
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt23':'menuSuperior:j_idt23'},'');return false" href="#">Novo Plano</a></li>
+                                        <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt25':'menuSuperior:j_idt25'},'');return false" href="#">Lista de Planos</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a class="aComoBotaoMenu" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Op\C3\A7\C3\B5es <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt27':'menuSuperior:j_idt27'},'');return false" href="#">Perfil</a></li>
+                                        <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt29':'menuSuperior:j_idt29'},'');return false" href="#">Sair</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Fim do menu superior -->
+
+                <!-- Inicio dos Modais apresentadas -->
+
+                <!-- Modal com as NOTIFICA&Ccedil;&Otilde;ES do usu&aacute;rio -->
+                <!--
+                &lt;div class="modal fade" id="modalNotificacoes" role="dialog"&gt;
+
+                    &lt;div class="modal-dialog"&gt;
+
+                        &lt;div class="panel panel-success"&gt;
+                            &lt;div class="panel-heading"&gt;
+                                &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
+                                &lt;h3 class="panel-title"&gt;Notifica&ccedil;&otilde;es&lt;/h3&gt;
+                            &lt;/div&gt;
+                            &lt;div class="panel-body" align="center"&gt;
+                                &lt;h:dataTable id="tabelaNotificacoes" value="#-{notificacoesEmpreendedorBean.notificacoes}" var="notificacao"&gt;
+                                    &lt;h:column&gt;
+                                        &lt;div class="bordas"&gt;
+                                            &lt;h:outputText value="#-{notificacao.descricao}"/&gt;
+                                            &lt;a href="#-{notificacao.link}"&gt; Clique aqui &lt;/a&gt; Para ver detalhes.
+                                        &lt;/div&gt;
+                                    &lt;/h:column&gt;
+                                &lt;/h:dataTable&gt;
+                            &lt;/div&gt;
+                            &lt;div class="panel-footer" align="right"&gt;
+                                &lt;button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar"&gt;Voltar&lt;/button&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                -->
+                <!-- Fim do Modal com as NOTIFICA&Ccedil;&Otilde;ES -->
+
+                <!-- Fim das modais apresentadas -->
+                
+                <!--
+                &lt;p:poll interval="3" update="barraNotificacoes"/&gt;
+                &lt;p:poll interval="3" update="tabelaNotificacoes"/&gt;
+                --><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" type="hidden" value="-3670238365623614034:-5925409523497937250" autocomplete="off">
+</form>
+<form name="lista_planos" id="lista_planos" action="/GerenciadorPampatec/view/empreendedor/paginaBuscaPlanoDeNegocio.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="lista_planos" type="hidden" value="lista_planos">
+<span id="lista_planos:mensagensFeed"></span>
+                
+                <div>
+                    <div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <h1 style="text-align: center;">Teste, estes s\C3\A3o os seus planos de neg\C3\B3cio</h1>
+                        </div>
+                        <div class="col-md-2 text-right" text-align="right"><a title="Cadastre um novo plano de neg\C3\B3cio" class="btn btn-success" onclick="mojarra.jsfcljs(document.getElementById('lista_planos'),{'lista_planos:j_idt34':'lista_planos:j_idt34'},'');return false" href="#">
+                                <label style="color: white; cursor: pointer;"><i class="fa fa-pencil-square-o fa-2x"></i> <br> Criar novo plano de neg\C3\B3cio</label></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"><div class="ui-datatable ui-widget" id="lista_planos:singleDT"><div class="ui-datatable-header ui-widget-header ui-corner-top"><div class="ui-outputpanel ui-widget" id="lista_planos:singleDT:procurar">Procurar: <input name="lista_planos:singleDT:globalFilter" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="lista_planos:singleDT:globalFilter" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 40%;" onkeyup="PF('TabelaProjeto').filter()" type="text" placeholder="Informe nome, datas ou status do plano de neg\C3\B3cios." value=""><button name="lista_planos:singleDT:dummy" id="lista_planos:singleDT:dummy" role="button" aria-disabled="false" style="display: none;" onclick='PrimeFaces.ab({s:"lista_planos:singleDT:dummy",p:"@none",g:false});return false;' type="submit"><span class="ui-button-text ui-c">ui-button</span></button></div></div><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="lista_planos:singleDT_head"><tr role="row"><th tabindex="0" class="ui-state-default ui-sortable-column ui-filter-column" id="lista_planos:singleDT:j_idt39" role="columnheader" style="text-align: center;" aria-label="Nome: activate to sort column ascending" aria-sort="other"><span class="ui-column-title">Nome</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span><label class="ui-helper-hidden" id="lista_planos:singleDT:j_idt39:filter_label" for="lista_planos:singleDT:j_idt39:filter">Filter by Nome</label><input name="lista_planos:singleDT:j_idt39:filter" class="ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="lista_planos:singleDT:j_idt39:filter" role="textbox" aria-disabled="false" aria-readonly="false" aria-labelledby="lista_planos:singleDT:j_idt39:filter_label" style="display: none;" value="" autocomplete="off"></th><th tabindex="0" class="ui-state-default ui-sortable-column ui-filter-column" id="lista_planos:singleDT:j_idt41" role="columnheader" style="text-align: center;" aria-label="Data de Cria\C3\A7\C3\A3o: activate to sort column ascending" aria-sort="other"><span class="ui-column-title">Data de Cria\C3\A7\C3\A3o</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span><label class="ui-helper-hidden" id="lista_planos:singleDT:j_idt41:filter_label" for="lista_planos:singleDT:j_idt41:filter">Filter by Data de Cria\C3\A7\C3\A3o</label><input name="lista_planos:singleDT:j_idt41:filter" class="ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="lista_planos:singleDT:j_idt41:filter" role="textbox" aria-disabled="false" aria-readonly="false" aria-labelledby="lista_planos:singleDT:j_idt41:filter_label" style="display: none;" value="" autocomplete="off"></th><th tabindex="0" class="ui-state-default ui-sortable-column ui-filter-column" id="lista_planos:singleDT:j_idt44" role="columnheader" style="text-align: center;" aria-label="Data de Envio: activate to sort column ascending" aria-sort="other"><span class="ui-column-title">Data de Envio</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span><label class="ui-helper-hidden" id="lista_planos:singleDT:j_idt44:filter_label" for="lista_planos:singleDT:j_idt44:filter">Filter by Data de Envio</label><input name="lista_planos:singleDT:j_idt44:filter" class="ui-column-filter ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="lista_planos:singleDT:j_idt44:filter" role="textbox" aria-disabled="false" aria-readonly="false" aria-labelledby="lista_planos:singleDT:j_idt44:filter_label" style="display: none;" value="" autocomplete="off"></th><th class="ui-state-default ui-filter-column" id="lista_planos:singleDT:j_idt47" role="columnheader" style="width: 210px; text-align: center;" aria-label="Status"><span class="ui-column-title">Status</span><div class="ui-column-customfilter"><select name="lista_planos:singleDT:j_idt48" style="color: black;" onchange="PF('TabelaProjeto').filter()" size="1">	<option selected="selected" value="">Todos</option>
+	<option value="Em elabora\C3\A7\C3\A3o">Em elabora\C3\A7\C3\A3o</option>
+	<option value="Em pr\C3\A9-avalia\C3\A7\C3\A3o">Em pr\C3\A9-avalia\C3\A7\C3\A3o</option>
+	<option value="Necessita melhoria">Necessita melhoria</option>
+	<option value="Aceito para avalia\C3\A7\C3\A3o">Aceito para avalia\C3\A7\C3\A3o</option>
+	<option value="Em formaliza\C3\A7\C3\A3o">Em formaliza\C3\A7\C3\A3o</option>
+	<option value="Incuba\C3\A7\C3\A3o">Incuba\C3\A7\C3\A3o</option>
+	<option value="Reprovado">Reprovado</option>
+</select></div></th><th class="ui-state-default" id="lista_planos:singleDT:j_idt52" role="columnheader" style="width: 320px; text-align: center;" aria-label="A\C3\A7\C3\B5es"><span class="ui-column-title">A\C3\A7\C3\B5es</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="lista_planos:singleDT_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell" style="text-align: center;">NomeEditado</td><td role="gridcell" style="text-align: center;">02/05/2017 12:34:49</td><td role="gridcell" style="text-align: center;">02/05/2017 12:48:38</td><td role="gridcell" style="width: 210px; text-align: center;">Em Pr\C3\A9-Avalia\C3\A7\C3\A3o</td><td role="gridcell" style="width: 320px; text-align: center;">
+                                <div align="center">
+                                    <div class="col-md-6"><button name="lista_planos:singleDT:0:visualizar" title="Visualizar o Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="lista_planos:singleDT:0:visualizar" role="button" aria-disabled="false" onclick='PrimeFaces.ab({s:"lista_planos:singleDT:0:visualizar"});return false;' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-eye"></span><span class="ui-button-text ui-c">Visualizar</span></button>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                    </div>
+                                    <script>
+                                        function confirmacaoDeExclusao() {
+                                            $("#modalInfoDeExclusao").modal();
+                                        }
+                                        
+                                        function confirmacaoDeSair() {
+                                            $("#modalInfoDeSair").modal();
+                                        }
+                                    </script>
+                                    <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o EXCLUIR PLANO DE NEGOCIO -->
+                                    <div class="modal fade" id="modalInfoDeExclusao" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Conte&uacute;do do Modal -->
+                                            <div class="modal-content">
+                                                <div class="modal-header fundoVerde">
+                                                    <button class="close" type="button" data-dismiss="modal">\C3\97</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <strong>Voc\C3\AA tem certeza que deseja excluir este plano de neg\C3\B3cio?</strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-12"> 
+
+                                                        <button class="btn btn-default" type="button" data-dismiss="modal" tittle="Cancelar exclus\C3\A3o do plano de neg\C3\B3cio">Cancelar</button><input name="lista_planos:singleDT:0:j_idt58" class="btn btn-success" type="submit" value="Confirmar exclus\C3\A3o">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o SAIR DO PLANO DE NEGOCIO -->
+                                    <div class="modal fade" id="modalInfoDeSair" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Conte&uacute;do do Modal -->
+                                            <div class="modal-content">
+                                                <div class="modal-header fundoVerde">
+                                                    <button class="close" type="button" data-dismiss="modal">x</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <strong>Voc\C3\AA tem certeza que deseja sair deste plano de neg\C3\B3cio?</strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-12"> 
+
+                                                        <button class="btn btn-default" type="button" data-dismiss="modal" tittle="Cancelar sair do plano">Cancelar</button><input name="lista_planos:singleDT:0:j_idt60" class="btn btn-success" type="submit" value="Confirmar sair do plano">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div></td></tr><tr class="ui-widget-content ui-datatable-odd" role="row" data-ri="1"><td role="gridcell" style="text-align: center;">NomeEditado</td><td role="gridcell" style="text-align: center;">26/04/2017 23:40:12</td><td role="gridcell" style="text-align: center;">02/05/2017 12:34:10</td><td role="gridcell" style="width: 210px; text-align: center;">Em Pr\C3\A9-Avalia\C3\A7\C3\A3o</td><td role="gridcell" style="width: 320px; text-align: center;">
+                                <div align="center">
+                                    <div class="col-md-6"><button name="lista_planos:singleDT:1:visualizar" title="Visualizar o Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="lista_planos:singleDT:1:visualizar" role="button" aria-disabled="false" onclick='PrimeFaces.ab({s:"lista_planos:singleDT:1:visualizar"});return false;' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-eye"></span><span class="ui-button-text ui-c">Visualizar</span></button>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                    </div>
+                                    <script>
+                                        function confirmacaoDeExclusao() {
+                                            $("#modalInfoDeExclusao").modal();
+                                        }
+                                        
+                                        function confirmacaoDeSair() {
+                                            $("#modalInfoDeSair").modal();
+                                        }
+                                    </script>
+                                    <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o EXCLUIR PLANO DE NEGOCIO -->
+                                    <div class="modal fade" id="modalInfoDeExclusao" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Conte&uacute;do do Modal -->
+                                            <div class="modal-content">
+                                                <div class="modal-header fundoVerde">
+                                                    <button class="close" type="button" data-dismiss="modal">\C3\97</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <strong>Voc\C3\AA tem certeza que deseja excluir este plano de neg\C3\B3cio?</strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-12"> 
+
+                                                        <button class="btn btn-default" type="button" data-dismiss="modal" tittle="Cancelar exclus\C3\A3o do plano de neg\C3\B3cio">Cancelar</button><input name="lista_planos:singleDT:1:j_idt58" class="btn btn-success" type="submit" value="Confirmar exclus\C3\A3o">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o SAIR DO PLANO DE NEGOCIO -->
+                                    <div class="modal fade" id="modalInfoDeSair" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Conte&uacute;do do Modal -->
+                                            <div class="modal-content">
+                                                <div class="modal-header fundoVerde">
+                                                    <button class="close" type="button" data-dismiss="modal">x</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <strong>Voc\C3\AA tem certeza que deseja sair deste plano de neg\C3\B3cio?</strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="col-md-12"> 
+
+                                                        <button class="btn btn-default" type="button" data-dismiss="modal" tittle="Cancelar sair do plano">Cancelar</button><input name="lista_planos:singleDT:1:j_idt60" class="btn btn-success" type="submit" value="Confirmar sair do plano">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div></td></tr></tbody></table></div><div class="ui-paginator ui-paginator-bottom ui-widget-header ui-corner-bottom" id="lista_planos:singleDT_paginator_bottom" role="navigation" aria-label="Pagination"><a class="ui-paginator-first ui-state-default ui-corner-all ui-state-disabled" aria-label="First Page" href="#"><span class="ui-icon ui-icon-seek-first">p</span></a><a class="ui-paginator-prev ui-state-default ui-corner-all ui-state-disabled" aria-label="Previous Page" href="#"><span class="ui-icon ui-icon-seek-prev">p</span></a><span class="ui-paginator-pages"><a tabindex="0" class="ui-paginator-page ui-state-default ui-state-active ui-corner-all" aria-label="Page 1" href="#">1</a></span><a class="ui-paginator-next ui-state-default ui-corner-all ui-state-disabled" aria-label="Next Page" href="#"><span class="ui-icon ui-icon-seek-next">p</span></a><a class="ui-paginator-last ui-state-default ui-corner-all ui-state-disabled" aria-label="Last Page" href="#"><span class="ui-icon ui-icon-seek-end">p</span></a></div></div>
+                    </div>
+                </div><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" type="hidden" value="-3670238365623614034:-5925409523497937250" autocomplete="off">
+</form>
+            <div class="alert alert-dismissible alert-danger" id="infoBotaoCadastrar" style="visibility: hidden;">
+                <button class="close" type="button" data-dismiss="alert">\C3\97</button>
+                <strong>Oh snap!</strong> <a class="alert-link" href="#">Change a few things up</a> and try submitting again.
+            </div>
+    <div id="textarea_simulator" style="left: 0px; top: 0px; visibility: hidden; position: absolute;"></div><div class="ui-growl ui-widget" id="lista_planos:mensagensFeed_container" style="z-index: 1001;"></div></body></html>

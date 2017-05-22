@@ -1,0 +1,896 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="j_idt2"><link href="/GerenciadorPampatec/javax.faces.resource/theme.css.jsf?ln=primefaces-aristo" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/fa/font-awesome.css.jsf?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery-plugins.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/core.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/jsf.js.jsf?ln=javax.faces" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/components.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><link href="/GerenciadorPampatec/javax.faces.resource/components.css.jsf?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/animation.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/bootstrap.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/outro.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/projeto.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/font-awesome.min.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/ns-default.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/ns-style-growl.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/sweetalert.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/tabela.css.jsf?ln=css" rel="stylesheet" type="text/css"><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='pt_BR';}</script><script src="/GerenciadorPampatec/javax.faces.resource/bootstrap-3.3.6.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/js.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/formulario.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/mensagemFeedBack.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/chamaModal.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/sweetalert.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/sessionManager.js.jsf?ln=js" type="text/javascript"></script> 
+
+        <title>Cadastro Plano de Neg\C3\B3cio</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Script para exibi&ccedil;&atilde;o da info do bot&atilde;o SALVAR -->
+        <script type="text/javascript">
+
+            var andamentoProjeto = 0;
+            var custoVariavelPreenchido = false;
+            var custoFixoPreenchido = true;
+            var tipoEmpreededor = true
+
+            var tempoMaxSessao = 1800;
+
+            /**
+             * 
+             * @returns {undefined}
+             */
+            setTimeout(function () {
+                console.log("Mata a sess\C3\A3o e chama o Bah!");
+                showSweetAlert();
+            }, (tempoMaxSessao - 1) * 1000);
+
+            /**
+             * <p> M\C3\A9todo de gatilho para invalidar a sess\C3\A3o do usu\C3\A1rio, 
+             * caso essa ainda exista indevidamente.</p>
+             * 
+             * @returns {undefined}
+             */
+            function triggerParaInvalidarSessao() {
+                // O metodo \C3\A9 chamado no sweetAlert somente para ativar um controle remoto
+                // esse controle remote aciona um metodo para invalidar a sess\C3\A3o quando o "bah!" \C3\A9 chamado.
+            }
+            /**
+             * <p> m\C3\A9todo usado para exibir o gif carregando no modal de confirma\C3\A7\C3\A3o de
+             * envio para pre-avalia\C3\A7\C3\A3o </p>
+             * @returns {undefined}
+             */
+            function exibeCarregando() {
+                document.getElementById("carregando").setAttribute("class", "carregando");
+                document.getElementById("botaoFecharModalEnviar").disabled = true;
+            }
+            function exibeCarregando2() {
+                document.getElementById("carregando2").setAttribute("class", "carregando");
+                document.getElementById("botaoFecharModalSalvarEquipe").disabled = true;
+            }
+        </script>
+
+        <!-- Classe para 'dizer' o que n&atilde;o ser&aacute; impresso da p&aacute;gina, para isto
+        basta adicionar a classe 'noprint' na classe da div ou do elemento -->
+        <style>
+            @media print { 
+                .noprint { display:none; } 
+            </style>
+            <!--
+            &lt;meta http-equiv="refresh" content="#-{userBean.tempoMaximoSessao()};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/&gt;
+            --></head><body onload="carregaPagina(), verificarCampos(), timeoutMensagemFeedBack(SALVO), timeoutMensagemFeedBack(ERRO);">
+
+            <!-- In&iacute;cio do menu superior -->
+<form name="menuSuperior" id="menuSuperior" action="/GerenciadorPampatec/view/empreendedor/enviarProjeto.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="menuSuperior" type="hidden" value="menuSuperior">
+
+
+                <!-- Controle Remoto que invalida a sess&atilde;o, ele &eacute; acionado quando o sweetAlert (Bah!) &eacute; chamado --><script type="text/javascript">triggerParaInvalidarSessao = function() {PrimeFaces.ab({s:"menuSuperior:j_idt23",f:"menuSuperior",pa:arguments[0]});}</script>
+                <!-- Fim do Controle Remoto-->    
+
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="col-md-6">
+                            <h4 style="color: white;">Bem-vindo(a) Teste!</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li class="dropdown"><a class="aComoBotaoMenu" onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt27':'menuSuperior:j_idt27'},'');return false" href="#">In\C3\ADcio</a>
+                                </li>
+                                <!--
+                                &lt;li&gt;
+                                    &lt;h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes"&gt;
+                                        Notifica&ccedil;&otilde;es
+                                        &lt;span class="badge"&gt;
+                                            &lt;h:outputText value="#-{notificacoesEmpreendedorBean.quantidadeNotificacoes}"&gt;&lt;/h:outputText&gt; 
+                                        &lt;/span&gt;
+                                        &lt;f:ajax execute="@form" event="click" listener="#-{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/&gt;
+                                    &lt;/h:outputLink&gt;
+                                &lt;/li&gt;
+                                -->
+                                <li class="dropdown">
+                                    <a class="aComoBotaoMenu" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Planos de Neg\C3\B3cio
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt29':'menuSuperior:j_idt29'},'');return false" href="#">Novo Plano</a></li>
+                                        <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt31':'menuSuperior:j_idt31'},'');return false" href="#">Lista de Planos</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a class="aComoBotaoMenu" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Op\C3\A7\C3\B5es <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt33':'menuSuperior:j_idt33'},'');return false" href="#">Perfil</a></li>
+                                        <li><a onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt35':'menuSuperior:j_idt35'},'');return false" href="#">Sair</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+
+                <!-- Inicio dos Modais apresentadas -->
+
+                <!-- Modal com as NOTIFICA&Ccedil;&Otilde;ES do usu&aacute;rio -->
+                <!--
+                &lt;div class="modal fade" id="modalNotificacoes" role="dialog"&gt;
+    
+                    &lt;div class="modal-dialog"&gt;
+    
+                        &lt;div class="panel panel-success"&gt;
+                            &lt;div class="panel-heading"&gt;
+                                &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
+                                &lt;h3 class="panel-title"&gt;Notifica&ccedil;&otilde;es&lt;/h3&gt;
+                            &lt;/div&gt;
+                            &lt;div class="panel-body" align="center"&gt;
+                                &lt;h:dataTable id="tabelaNotificacoes" value="#-{notificacoesEmpreendedorBean.notificacoes}" var="notificacao"&gt;
+                                    &lt;h:column&gt;
+                                        &lt;div class="bordas"&gt;
+                                            &lt;h:outputText value="#-{notificacao.descricao}"/&gt;
+                                            &lt;a href="#-{notificacao.link}"&gt; Clique aqui &lt;/a&gt; Para ver detalhes.
+                                        &lt;/div&gt;
+                                    &lt;/h:column&gt;
+                                &lt;/h:dataTable&gt;
+                            &lt;/div&gt;
+                            &lt;div class="panel-footer" align="right"&gt;
+                                &lt;button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar"&gt;Voltar&lt;/button&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+    
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                -->
+                <!-- Fim do Modal com as NOTIFICA&Ccedil;&Otilde;ES -->
+
+                <!-- Fim das modais apresentadas --><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" type="hidden" value="-4201201997204598390:-4702427498348075658" autocomplete="off">
+</form>
+            <!-- Fim do menu superior -->
+
+
+            <!-- Script para exibi&ccedil;&atilde;o da info do bot&atilde;o SALVAR -->
+            <script>
+
+                function infoSalvar() {
+                    $("#modalInfoSalvar").modal();
+                }
+
+                function infoSubmeter() {
+                    $("#modalInfoSubmeter").modal();
+                }
+            </script>
+
+            <!-- SE&Ccedil;&Atilde;O DO WORKFLOW HORIZONTAL -->
+            <div class="col-md-12 text-center noprint" style="background-color: rgb(0, 168, 89);">
+                <ul id="progressbar">
+                    <li class="active etapaAtual etapaSelecionada" id="etapa1"><a style="cursor: pointer;" onclick="mostraDIV2('div_apresentacao_formulario'), mostra_vertical_elaboracao(), addFoco('etapa1')">Elabora\C3\A7\C3\A3o</a></li>
+                    <li id="etapa2" style="cursor: default;"><b>Pr\C3\A9-Avalia\C3\A7\C3\A3o</b></li>
+                    <li id="etapa3" style="cursor: default;"><b>Avalia\C3\A7\C3\A3o</b></li>
+                    <li id="etapa4" style="cursor: default;"><b>Formaliza\C3\A7\C3\A3o</b></li>
+                    <li id="etapa5" style="cursor: default;"><b>Incuba\C3\A7\C3\A3o</b></li>
+
+                </ul>
+            </div>
+            <!-- FIM DA SE&Ccedil;&Atilde;O DO WORKFLOW HORIZONTAL -->
+
+            <!-- SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
+            <div class="col-md-2 text-center bounceInLeft animated estiloDivVertical noprint" id="vertical_etapa_elaboracao">
+                <br><div class="divPadding"><input name="botao_elaboracao_equipe" title="Equipe do Plano de Neg\C3\B3cio" class="btn btn-success btnWorkflowV" id="botao_elaboracao_equipe" onclick="addFocoBotao('botao_elaboracao_equipe'), mostraDIV('formParte01')" type="submit" value="Equipe"><br></div><div class="divPadding">
+                    <!-- A compra&ccedil;&atilde;o do STATUS do projeto a partir de um n&uacute;mero (nesse caso 0 e 8) est&aacute; errado, o coreto seria puxar A CONSTANTE para comparar, por&eacute;m n&atilde;o consegui fazer isso agora.
+                    Porqu&ecirc; comparar com a CONSTANTE ? Por que no futuro se mudarem o valor das contantes na MODEL PROJETO vai dar pau em todas as compara&ccedil;&otilde;es de status que foram realizadas comparando um
+                    n&uacute;mero inteiro, inves da CONSNTANTE --><input name="botao_elaboracao_editar" title="Editar Plano de Neg\C3\B3cio" class="btn btn-danger btnEstadoAtual pulse animated pulse animated bordaEstadoVisualizado" id="botao_elaboracao_editar" onclick="addFocoBotao('botao_elaboracao_editar'), mostraDIV('div_apresentacao_formulario')" type="submit" value="Editar"><br></div>
+                <div class="divPadding"><input name="botao_revisar" title="Revisar Plano de Neg\C3\B3cio" class="btn btn-success btnWorkflowV" id="botao_revisar" onclick="addFocoBotao('botao_revisar'), mostraDIV('div_revisar_plano')" type="submit" value="Revisar"><br>
+                </div>
+                <div class="divPadding"><input name="botao_submeter" title="Submeter Plano de Neg\C3\B3cio" class="btn btn-success btnWorkflowV" id="botao_submeter" onclick="addFocoBotao('botao_submeter'), mostraDIV('divSubmeterPlano')" type="submit" value="Submeter"><br>
+
+                </div>
+            </div>
+
+            <!-- FIM DA SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA ELABORACAO-->
+
+            <!-- SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
+            <div class="esconder-div" id="vertical_etapa_pre_avaliacao">
+                <div class="divPadding text-center"><input name="botao_resultado_preavaliacao" class="btn btn-success btnWorkflowV" id="botao_resultado_preavaliacao" onclick="addFocoBotao('botao_resultado_preavaliacao'), mostraDIV('divPreAvaliar_visualizar')" type="submit" value="Resultado do avaliador"><br>
+                </div>
+                <div class="divPadding text-center"><input name="botao_preavaliacao" class="btn btn-success btnWorkflowV" id="botao_preavaliacao" onclick="addFocoBotao('botao_preavaliacao'), mostraDIV('divPreVisualizar')" type="submit" value="Visualizar"><br>
+                </div>
+            </div>
+            <!-- FIM DA SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA PRE-AVALIACAO-->
+
+
+            <!-- SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA AVALIACAO-->
+            <div class="esconder-div" id="vertical_etapa_avaliacao" style="background-color: rgb(152, 61, 0);">
+                <div class="divPadding"><input name="botao_agendamento" disabled="disabled" class="btn btn-success btnWorkflowV" id="botao_agendamento" onclick="addFocoBotao('botao_agendamento')" type="submit" value="Agendamento"><br>
+                </div>
+                <div class="divPadding"><input name="botao_entrevista" disabled="disabled" class="btn btn-success btnWorkflowV" id="botao_entrevista" onclick="addFocoBotao('botao_entrevista')" type="submit" value="Entrevista"><br>
+                </div>
+                <div class="divPadding"><input name="botao_parecer" disabled="disabled" class="btn btn-success btnWorkflowV" id="botao_parecer" onclick="addFocoBotao('botao_parecer')" type="submit" value="Parecer"><br>
+                </div>
+            </div>
+            <!-- FIM DA SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA AVALIACAO-->
+
+
+            <!-- SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA FORMALIZACAO-->
+            <div class="esconder-div" id="vertical_etapa_formalizacao" style="background-color: yellow;">
+                <div class="divPadding"><input name="botao_entrega_documentacao" disabled="disabled" class="btn btn-success btnWorkflowV" id="botao_entrega_documentacao" onclick="addFocoBotao('botao_documentacao')" type="submit" value="Entrega documenta\C3\A7\C3\A3o"><br>
+                </div>
+                <div class="divPadding"><input name="botao_resultado_final" disabled="disabled" class="btn btn-success btnWorkflowV" id="botao_resultado_final" onclick="addFocoBotao('botao_resultado_final')" type="submit" value="Resultado final"><br>
+                </div>
+                <div class="divPadding"><input name="botao_assinar_contrato" disabled="disabled" class="btn btn-success btnWorkflowV" id="botao_assinar_contrato" onclick="addFocoBotao('botao_assinar_contrato')" type="submit" value="Assinar contrato"><br>
+                </div>
+            </div>
+            <!-- FIM DA SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA FORMALIZACAO-->
+
+
+            <!-- SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA INCUBACAO-->
+            <div class="esconder-div" id="vertical_etapa_incubacao" style="background-color: violet;">
+                <div class="divPadding"><input name="botao_avaliacao" disabled="disabled" class="btn btn-success btnWorkflowV" id="botao_avaliacao" onclick="addFocoBotao('botao_avaliacao')" type="submit" value="Avalia\C3\A7\C3\A3o"><br>
+                </div>
+                <div class="divPadding"><input name="botao_resultado" disabled="disabled" class="btn btn-success btnWorkflowV" id="botao_resultado" onclick="addFocoBotao('botao_resultado')" type="submit" value="Resultado"><br>
+                </div>
+            </div>
+            <!-- FIM DA SE&Ccedil;&Atilde;O DO WORKFLOW VERTICAL ETAPA ININCUBACAO-->
+<form name="formulario_cadastro_projeto" id="formulario_cadastro_projeto" onsubmit="precisaSalvar = false;" action="/GerenciadorPampatec/view/empreendedor/enviarProjeto.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="formulario_cadastro_projeto" type="hidden" value="formulario_cadastro_projeto">
+
+
+                <!-- Fim do Script de informa&ccedil;&atilde;o -->
+
+                <!-- In&iacute;cio dos MODAIS exibidos no formul&aacute;rio -->
+
+                <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o SALVAR PLANO DE NEG&Oacute;CIO -->
+                <div class="modal fade" id="modalInfoSalvar" role="dialog">
+
+                    <div class="modal-dialog">
+                        <div class="modal-content panel-success">
+                            <div class="modal-header fundoVerde">
+                                <button class="close" aria-hidden="true" type="button" data-dismiss="modal">\C3\97</button>
+                                <h4 class="modal-title">Salvar Projeto</h4>
+                            </div>
+                            <div class="modal-body">
+                                Ao clicar no bot\C3\A3o <strong><u>Salvar Plano de Neg\C3\B3cio</u></strong> os campos preenchidos ficam salvos, 
+                                para que voc\C3\AA possa retornar e acabar de preench\C3\AA-los em outro momento.<br><br>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-default" type="button" data-dismiss="modal">Voltar para edi\C3\A7\C3\A3o</button><input name="formulario_cadastro_projeto:j_idt57" class="btn btn-success" type="submit" value="Salvar Plano de Neg\C3\B3cio">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim do Modal de informa&ccedil;&atilde;o do bot&atilde;o Salvar Plano de Neg&oacute;cio -->
+
+                <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o SUBMETER PLANO DE NEG&Oacute;CIO -->
+                <div class="modal fade" id="modalInfoSubmeter" role="dialog">
+
+                    <div class="modal-dialog">
+                        <div class="modal-content panel-success">
+                            <div class="modal-header fundoVerde">
+                                <button class="close" id="botaoFecharModalEnviar" aria-hidden="true" type="button" data-dismiss="modal">\C3\97</button>
+                                <h4 class="modal-title">Submeter Projeto</h4>
+                            </div>
+                            <div class="modal-body">
+                                Ao clicar no bot\C3\A3o <strong><u>Submeter Plano de Neg\C3\B3cio</u></strong> o plano ser\C3\A1 submetido para pr\C3\A9-avalia\C3\A7\C3\A3o, 
+                                Voc\C3\AA tem certeza que deseja submeter?<br><br>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="invisivel" id="carregando"><img alt="Carregando" src="/GerenciadorPampatec/javax.faces.resource/ajax-loader4.gif.jsf?ln=images">
+                                </div>
+                                <button class="btn btn-default" type="button" data-dismiss="modal">Voltar para edi\C3\A7\C3\A3o</button><input name="formulario_cadastro_projeto:j_idt61" class="btn btn-success" onclick="exibeCarregando()" type="submit" value="Submeter Projeto">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim do Modal de informa&ccedil;&atilde;o do bot&atilde;o Salvar Plano de Neg&oacute;cio -->
+
+                <!-- Modal com a Informa&ccedil;&atilde;o do bot&atilde;o SALVAR EQUIPE -->
+                <div class="modal fade" id="modalInfoSalvarEquipe" role="dialog">
+
+                    <div class="modal-dialog">
+                        <div class="modal-content panel-success">
+                            <div class="modal-header fundoVerde">
+                                <button class="close" id="botaoFecharModalSalvarEquipe" aria-hidden="true" type="button" data-dismiss="modal">\C3\97</button>
+                                <h4 class="modal-title">Salvar Equipe</h4>
+                            </div>
+                            <div class="modal-body">
+                                Ao clicar no bot\C3\A3o <strong><u>Salvar Equipe</u></strong> os empreendedores observadores 
+                                adicionados ser\C3\A3o vinculados ao seu projeto. Voc\C3\AA poder\C3\A1 retornar a qualquer momento
+                                \C3\A0 etapa de defini\C3\A7\C3\A3o de Equipe e adicionar ou remover empreendedores do seu projeto.<br><br>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="invisivel" id="carregando2"><img alt="Carregando" src="/GerenciadorPampatec/javax.faces.resource/ajax-loader4.gif.jsf?ln=images">
+                                </div>
+                                <button title="Voltar para edi\C3\A7\C3\A3o de equipe" class="btn btn-default" type="button" data-dismiss="modal">Voltar para Equipe</button><input name="formulario_cadastro_projeto:j_idt65" title="Salvar edi\C3\A7\C3\A3o de equipe" class="btn btn-success" onclick="exibeCarregando2()" type="submit" value="Salvar Equipe">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fim do Modal de informa&ccedil;&atilde;o do bot&atilde;o Salvar EQUIPE -->
+
+
+                <!-- NOTIFICA&Ccedil;&Otilde;ES -->
+
+                <!-- Notifica&ccedil;&atilde;o Plano salvo com sucesso. --><div id="formulario_cadastro_projeto:mensagemSalvamento"><div class="ns-box ns-growl notSalvo ns-type-notice ns-show animated" id="formulario_cadastro_projeto:notificacaoSalvo" style="left: 40%; position: fixed;">
+                        <div>
+                            <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
+                            <p style="padding-left: 15%; margin-top: -17%;">Suas informa\C3\A7\C3\B5es foram salvas com sucesso!</p>
+                            <span class="ns-close" id="closeFeedBack" onclick="fecharMensagemFeedBackSalvo();"></span>
+                        </div></div></div>
+                <!-- Fim Notifica&ccedil;&atilde;o Plano salvo com sucesso. -->
+
+                <!-- Notifica&ccedil;&atilde;o erro ao submeter. --><div id="formulario_cadastro_projeto:mensagemErroSubmissao"></div>
+
+                <!-- Fim Notifica&ccedil;&atilde;o erro ao submeter.. -->
+
+                <!--FIM NOTIFICA&Ccedil;&Otilde;ES -->
+
+                <!-- Fim dos MODAIS exibidos no formul&aacute;rio -->
+
+                <!-- SE&Ccedil;&Atilde;O DE APRESENTA&Ccedil;&Atilde;O DOS FORMUL&Aacute;RIOS -->
+                <div class="classeConteudo col-md-10" id="div_apresentacao_formulario">
+
+
+                    <br>
+                    <div class="col-md-12 form-horizontal well bs-component">
+                        <h1>Cadastro - Plano de Neg\C3\B3cio</h1><span id="formulario_cadastro_projeto:tituloMensagem"></span>
+                        <br>
+
+
+                        <div>
+
+                            <ul class="nav nav-tabs">
+                                <li class="abaPlano active" id="liTabNegocio"><a id="tabNegocio" aria-expanded="true" style="color: red;" href="#formParte02" data-toggle="tab">Neg\C3\B3cio</a></li>
+                                <li class="abaPlano" id="liTabAnaliseMercado"><a id="tabAnaliseMercado" aria-expanded="false" style="color: red;" href="#formParte03" data-toggle="tab">An\C3\A1lise de Mercado</a></li>
+                                <li class="abaPlano"><a id="tabProdutoServico" aria-expanded="false" style="color: red;" href="#formParte04" data-toggle="tab">Produto ou Servi\C3\A7o</a></li>
+                                <li class="abaPlano"><a id="tabGestaoPessoas" aria-expanded="false" style="color: red;" href="#formParte05" data-toggle="tab">Gest\C3\A3o de Pessoas</a></li>
+                                <li class="abaPlano"><a id="tabPlanoFinanceiro" aria-expanded="false" style="color: red;" href="#formParte06" data-toggle="tab">Plano Financeiro</a></li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+
+                                <!-- Est&aacute; se perguntando pela PRIMEIRA PARTE do formul&aacute;rio ?
+                                A PRIMEIRA PARTE consiste na EQUIPE, que saiu desta div e
+                                ficou s&oacute;zinha, ela est&aacute; mais a baixo nesta classe, por volta da linha 815,
+                                para evitar a necessidade de refatorar todas as ID's e afins
+                                foi prefer&iacute;vel manter os ID's atuais, portanto, n&atilde;o se preocupe.
+                                Um abra&ccedil;o :)~ -->
+
+                                <!-- &Iacute;nicio da SEGUNDA PARTE do formul&aacute;rio para Envio de Projeto Referente ao NEG&Oacute;CIO -->
+
+                                <div class="tab-pane active in" id="formParte02">
+                                    <br>
+                                    <div id="formularioParte02">
+                                        <legend>O Neg\C3\B3cio</legend>
+
+                                        <div title="Insira o nome da Empresa ou do Projeto" class="col-md-12">
+
+                                            <b>Nome da Empresa ou do Projeto* </b><br><span id="formulario_cadastro_projeto:mensagemErroNome"></span><br>
+                                                <!--&lt;p:ajax update=":form_revisao" event="change"/&gt;--><textarea name="formulario_cadastro_projeto:empresaProjeto" class="form-control semResize" id="formulario_cadastro_projeto:empresaProjeto" onblur="verificaNegocio();" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_nomeEmpresa formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroNome',{'onevent':funcaoAjaxSalvo})" rows="1">Novo plano de neg\C3\B3cio sem nome</textarea>
+                                            <br>
+                                        </div>
+
+                                        <div title="Insira o Segmento de Clientes" class="col-md-12">
+                                            <b>Segmento de Clientes* <a title="Ajuda com preenchimento de Segmento de Clientes" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt78" aria-label="Ajuda com preenchimento de Segmento de Clientes" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt78"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroSegmento"></span><br>
+                                            Para quem criamos valor? Quais s\C3\A3o os nossos clientes mais importantes? 
+                                            <textarea name="formulario_cadastro_projeto:segmentoDeClientes" class="form-control semResize" id="formulario_cadastro_projeto:segmentoDeClientes" onblur="verificaNegocio()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_segmento formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroSegmento',{'onevent':funcaoAjaxSalvo})" rows="3"></textarea>
+                                            <br>
+                                        </div>
+                                        <div title="Insira a Proposta de Valor" class="col-md-12">
+                                            <b>Proposta de Valor* <a title="Ajuda com preenchimento de Proposta de Valor" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt82" aria-label="Ajuda com preenchimento de Proposta de Valor" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt82"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroProposta"></span><br>
+                                            O que \C3\A9? O que faz? Que problema de nossos clientes ajudamos a solucionar? Que pacotes de produtos ou servi\C3\A7os oferecemos a cada segmento de mercado? Que valor proporcionamos a cada segmento de mercado?
+                                            <textarea name="formulario_cadastro_projeto:propostaDeValor" class="form-control semResize" id="formulario_cadastro_projeto:propostaDeValor" onblur="verificaNegocio()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_proposta formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroProposta',{'onevent':funcaoAjaxSalvo})" rows="6"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira as Atividades Chave" class="col-md-12">
+                                            <b>Atividades Chave* <a title="Ajuda com preenchimento de Atividades Chave" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt86" aria-label="Ajuda com preenchimento de Atividades Chave" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt86"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroAtividades"></span><br>
+                                            Que atividades-chave garantem que as nossas "Propostas de valor", "Canais", "Fontes de renda" e "Rela\C3\A7\C3\B5es com clientes" ser\C3\A3o realizadas? 
+                                            <textarea name="formulario_cadastro_projeto:atividadesChave" class="form-control semResize" id="formulario_cadastro_projeto:atividadesChave" onblur="verificaNegocio()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_atividades formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAtividades',{'onevent':funcaoAjaxSalvo})" rows="6"></textarea>
+                                            <br>
+                                        </div>
+
+                                        <div class="col-md-12 text-center">
+                                            <br><button name="formulario_cadastro_projeto:botaoSalvar2" title="Salvar Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_cadastro_projeto:botaoSalvar2" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){infoSalvar()},function(event){PrimeFaces.ab({s:"formulario_cadastro_projeto:botaoSalvar2"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Plano de Neg\C3\B3cio</span></button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Fim da segunda parte do formul&aacute;rio -->
+
+                                <!-- &Iacute;nicio da TERCEIRA PARTE do formul&aacute;rio para Envio de Projeto Referente a AN&Aacute;LISE DE MERCADO -->
+
+                                <div class="tab-pane fade" id="formParte03">
+
+                                    <div id="formularioParte03">
+                                        <br>
+                                        <legend id="subTitulo">An\C3\A1lise de Mercado</legend>
+
+                                        <div title="Insira as Rela\C3\A7\C3\B5es com clientes" class="col-md-12">
+                                            <b>Rela\C3\A7\C3\B5es com clientes* <a title="Ajuda com preenchimento de Rela\C3\A7\C3\B5es com clientes" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt92" aria-label="Ajuda com preenchimento de Rela\C3\A7\C3\B5es com clientes" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt92"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroRelacoes"></span><br>
+                                            Que tipo de rela\C3\A7\C3\A3o esperam os diferentes segmentos de mercado? O que fazemos para manter e fidelizar os nossos segmentos de clientes?
+                                            <textarea name="formulario_cadastro_projeto:relacoComClientes" class="form-control semResize" id="formulario_cadastro_projeto:relacoComClientes" onblur="verificaAnaliseMercado()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_ralacoes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroRelacoes',{'onevent':funcaoAjaxSalvo})" rows="5"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira as Parcerias Chave" class="col-md-12">
+                                            <b>Parcerias chave* <a title="Ajuda com preenchimento de Parcerias Chave" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt96" aria-label="Ajuda com preenchimento de Parcerias Chave" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt96"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroParcerias"></span><br>
+                                            Quem s\C3\A3o nossos parceiros-chave? Que recursos-chave adquirimos de nossos parceiros? Quem s\C3\A3o nossos principais fornecedores de mat\C3\A9ria-prima, insumos, servi\C3\A7os, ...? Que atividades-chave desenvolvemos em conjunto com parceiros?
+                                            <textarea name="formulario_cadastro_projeto:parceriasChaves" class="form-control semResize" id="formulario_cadastro_projeto:parceriasChaves" onblur="verificaAnaliseMercado()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_parcerias formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroParcerias',{'onevent':funcaoAjaxSalvo})" rows="6"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira os Canais" class="col-md-12">
+                                            <b>Canais* <a title="Ajuda com preenchimento de Canais" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt100" aria-label="Ajuda com preenchimento de Canais" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt100"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroCanais"></span><br>
+                                            Que canais preferem nossos segmentos de mercado? Como entregamos nossa proposta de valor ao cliente?
+
+                                            <textarea name="formulario_cadastro_projeto:canais" class="form-control semResize" id="formulario_cadastro_projeto:canais" onblur="verificaAnaliseMercado()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_canais formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroCanais',{'onevent':funcaoAjaxSalvo})" rows="6"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira os Recursos principais" class="col-md-12">
+                                            <b>Recursos principais* <a title="Ajuda com preenchimento de Recursos Principais" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt104" aria-label="Ajuda com preenchimento de Recursos Principais" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt104"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroRecursos"></span><br>
+                                            Que recursos s\C3\A3o necess\C3\A1rios para que possamos cumprir nossas "Propostas de valor", operar nossos "Canais", manter nossas "Rela\C3\A7\C3\B5es com clientes"? 
+                                            <textarea name="formulario_cadastro_projeto:recursosPrincipais" class="form-control semResize" id="formulario_cadastro_projeto:recursosPrincipais" onblur="verificaAnaliseMercado()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_recursos formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroRecursos',{'onevent':funcaoAjaxSalvo})" rows="6"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira os Concorrentes" class="col-md-12">
+                                            <b>Concorrentes* </b><br><span id="formulario_cadastro_projeto:mensagemErroConcorrentes"></span><br>
+                                            Quem s\C3\A3o nossos concorrentes? Como trabalham? Como vendem?
+                                            <textarea name="formulario_cadastro_projeto:concorrentes" class="form-control semResize" id="formulario_cadastro_projeto:concorrentes" onblur="verificaAnaliseMercado()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroConcorrentes',{'onevent':funcaoAjaxSalvo})" rows="5"></textarea>
+                                            <br>
+                                        </div>
+
+
+                                        <div class="col-md-12 text-center">
+                                            <br><button name="formulario_cadastro_projeto:botaoSalvar3" title="Salvar Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_cadastro_projeto:botaoSalvar3" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){infoSalvar()},function(event){PrimeFaces.ab({s:"formulario_cadastro_projeto:botaoSalvar3"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Plano de Neg\C3\B3cio</span></button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- Fim da terceira parte do formul&aacute;rio -->
+
+                                <!-- &Iacute;nicio da QUARTA PARTE do formul&aacute;rio para Envio de Projeto Referente ao PRODUTO DE SERVI&Ccedil;O -->
+
+                                <div class="tab-pane fade" id="formParte04">
+
+                                    <div id="formularioParte04">
+                                        <br>
+                                        <legend id="subTitulo">Produto de Servi\C3\A7o</legend>
+
+                                        <div title="Selecione o Est\C3\A1gio de evolu\C3\A7\C3\A3o" class="col-md-12">
+                                            <b>Est\C3\A1gio de evolu\C3\A7\C3\A3o* </b><br>
+                                            Qual o est\C3\A1gio atual de evolu\C3\A7\C3\A3o do produto ou servi\C3\A7o proposto?<br><span class="checkbox" id="formulario_cadastro_projeto:abc"><select name="formulario_cadastro_projeto:estagioDeEvolucao" class="form-control" id="formulario_cadastro_projeto:estagioDeEvolucao" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'form_revisao:revisao_concorrentes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:abc formulario_cadastro_projeto:campoOutro\\',{\\'onevent\\':funcaoAjaxSalvo})')" size="1">	<option selected="selected" value="Ideia B\C3\A1sica">Ideia B\C3\A1sica</option>
+	<option value="Projeto B\C3\A1sico">Projeto B\C3\A1sico</option>
+	<option value="Projeto Detalhado">Projeto Detalhado</option>
+	<option value="Prot\C3\B3tipo Desenvolvido">Prot\C3\B3tipo Desenvolvido</option>
+	<option value="Em teste no mercado">Em teste no mercado</option>
+	<option value="Clientes Pagando">Clientes Pagando</option>
+	<option value="Outro">Outro</option>
+</select>
+                                                <br>
+                                                <div>
+                                                </div></span>
+                                            <br>
+                                        </div>
+                                        <div title="Insira a Tecnologia e processos" class="col-md-12">
+                                            <b>Tecnologia e processos (n\C3\A3o poluentes)* <a title="Ajuda com preenchimento de Tecnologia e processos" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt122" aria-label="Ajuda com preenchimento de Tecnologia e processos" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt122"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroTecnologias"></span><br>
+                                            Como nosso projeto est\C3\A1 alinhado com os princ\C3\ADpios da sustentabilidade empresarial?
+                                            <textarea name="formulario_cadastro_projeto:tecnologiaProcessos" class="form-control semResize" id="formulario_cadastro_projeto:tecnologiaProcessos" onblur="verificarProdutoServico()" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'form_revisao:revisao_estagio formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroTecnologias\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="2"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira o Potencial de inova\C3\A7\C3\A3o tecnol\C3\B3gica" class="col-md-12">
+                                            <b>Potencial de inova\C3\A7\C3\A3o tecnol\C3\B3gica* </b><br><span id="formulario_cadastro_projeto:mensagemErroInovacao"></span><br>
+                                            Qual a capacidade de gerar produtos ou servi\C3\A7os inovadores que agreguem o uso de novas tecnologias?
+                                            <textarea name="formulario_cadastro_projeto:potencialInovacaoTecnologica" class="form-control semResize" id="formulario_cadastro_projeto:potencialInovacaoTecnologica" onblur="verificarProdutoServico()" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'form_revisao:revisao_potencial formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInovacao\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira as Aplica\C3\A7\C3\B5es" class="col-md-12">
+                                            <b>Aplica\C3\A7\C3\B5es* </b><br><span id="formulario_cadastro_projeto:mensagemErroAplicacoes"></span><br>
+                                            A quem se aplica? Como? De que maneira?
+                                            <textarea name="formulario_cadastro_projeto:aplicacoes" class="form-control semResize" id="formulario_cadastro_projeto:aplicacoes" onblur="verificarProdutoServico()" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'form_revisao:revisao_aplicacoes formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAplicacoes\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira as Dificuldades esperadas" class="col-md-12">
+                                            <b>Dificuldades esperadas* </b><br><span id="formulario_cadastro_projeto:mensagemErroDificuldades"></span><br>
+                                            Quais s\C3\A3o nossas principais limita\C3\A7\C3\B5es?
+                                            <textarea name="formulario_cadastro_projeto:dificuldadesEsperadas" class="form-control semResize" id="formulario_cadastro_projeto:dificuldadesEsperadas" onblur="verificarProdutoServico()" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'form_revisao:revisao_dificuldades formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroDificuldades\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira a intera\C3\A7\C3\A3o entre a empresa e Universidade" class="col-md-12">
+                                            <b>Intera\C3\A7\C3\A3o entre empresa e Universidade* </b><br><span id="formulario_cadastro_projeto:mensagemErroInteracaoUniversidade"></span><br>
+                                            Em que sentido seremos parceiros da Universidade? 
+                                            <textarea name="formulario_cadastro_projeto:interacaoEmpresaUniversidade" class="form-control semResize" id="formulario_cadastro_projeto:interacaoEmpresaUniversidade" onblur="verificarProdutoServico()" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'form_revisao:revisao_interacaoEmpUni formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInteracaoUniversidade\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="4"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira a intera\C3\A7\C3\A3o entre empresa, comunidade e governo" class="col-md-12">
+                                            <b>Intera\C3\A7\C3\A3o entre empresa, comunidade e governo* </b><br><span id="formulario_cadastro_projeto:mensagemErroInteracaoGoverno"></span><br>
+                                            Qual ser\C3\A1 nossa import\C3\A2ncia para o meio em que estamos inseridos? Teremos rela\C3\A7\C3\A3o com todos os envolvidos?
+                                            <textarea name="formulario_cadastro_projeto:interacaoEmpresaComunidadeGoverno" class="form-control semResize" id="formulario_cadastro_projeto:interacaoEmpresaComunidadeGoverno" onblur="verificarProdutoServico()" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'form_revisao:revisao_interacaoEmpGov formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInteracaoGoverno\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="3"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira a Infra-estrutura necess\C3\A1ria para o desenvolvimento e produ\C3\A7\C3\A3o" class="col-md-12">
+                                            <b>Infra-estrutura necess\C3\A1ria para o desenvolvimento e produ\C3\A7\C3\A3o* </b><br><span id="formulario_cadastro_projeto:mensagemErroEstrututura"></span><br>
+                                            Quanto de espa\C3\A7o ser\C3\A1 necess\C3\A1rio? Mobili\C3\A1rio? Equipamentos?
+                                            <textarea name="formulario_cadastro_projeto:infraestrutura" class="form-control semResize" id="formulario_cadastro_projeto:infraestrutura" onblur="verificarProdutoServico()" onchange="jsf.util.chain(this,event,'precisaSalvar = true;','mojarra.ab(this,event,\\'change\\',\\'@form\\',\\'form_revisao:revisa_infra formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroEstrututura\\',{\\'onevent\\':funcaoAjaxSalvo})')" rows="3"></textarea>
+
+                                            <br>
+                                        </div>
+
+                                        <div class="col-md-12 text-center">
+                                            <br><button name="formulario_cadastro_projeto:botaoSalvar4" title="Salvar Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_cadastro_projeto:botaoSalvar4" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){infoSalvar()},function(event){PrimeFaces.ab({s:"formulario_cadastro_projeto:botaoSalvar4"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Plano de Neg\C3\B3cio</span></button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Fim da quarta parte do formul&aacute;rio -->
+
+                                <!-- &Iacute;nicio da QUINTA PARTE do formul&aacute;rio para Envio de Projeto Referente a GEST&Atilde;O DE PESSOAS -->
+
+                                <div class="tab-pane fade" id="formParte05">
+
+                                    <div id="formularioParte05">
+                                        <br>
+                                        <legend id="subTitulo">Gest\C3\A3o de Pessoas</legend>
+
+                                        <div title="Insira a descri\C3\A7\C3\A3o da participa\C3\A7\C3\A3o acion\C3\A1ria" class="col-md-12">
+                                            <b>Descri\C3\A7\C3\A3o da participa\C3\A7\C3\A3o acion\C3\A1ria* </b><br><span id="formulario_cadastro_projeto:mensagemErroAcionaria"></span><br>
+                                            Haver\C3\A3o s\C3\B3cios? Quanto de participa\C3\A7\C3\A3o ter\C3\A3o?
+                                            <textarea name="formulario_cadastro_projeto:participacaoAcionaria" class="form-control semResize" id="formulario_cadastro_projeto:participacaoAcionaria" onblur="verificaGestaoPessoas()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_partAcionaria formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroAcionaria',{'onevent':funcaoAjaxSalvo})" rows="3"></textarea>
+                                            <br>
+                                        </div>
+                                        <div title="Insira o potencial de gera\C3\A7\C3\A3o de emprego e renda" class="col-md-12">
+                                            <b>Potencial de gera\C3\A7\C3\A3o de emprego e renda* </b><br><span id="formulario_cadastro_projeto:mensagemErroPotencialEmprego"></span><br>
+                                            Quantos empregos diretos e indiretos ser\C3\A3o criados? Qual estimativa de renda total gerada?
+                                            <textarea name="formulario_cadastro_projeto:potencialEmprego" class="form-control semResize" id="formulario_cadastro_projeto:potencialEmprego" onblur="verificaGestaoPessoas()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_potEmpRenda formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroPotencialEmprego',{'onevent':funcaoAjaxSalvo})" rows="3"></textarea>
+                                            <br>
+                                        </div>
+
+                                        <div class="col-md-12 text-center">
+                                            <br><button name="formulario_cadastro_projeto:botaoSalvar5" title="Salvar Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_cadastro_projeto:botaoSalvar5" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){infoSalvar()},function(event){PrimeFaces.ab({s:"formulario_cadastro_projeto:botaoSalvar5"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Plano de Neg\C3\B3cio</span></button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Fim da quinta parte do formul&aacute;rio -->
+
+                                <!-- &Iacute;nicio da SEXTA PARTE do formul&aacute;rio para Envio de Projeto Referente ao PLANO FINANCEIRO -->
+
+                                <div class="tab-pane fade" id="formParte06">
+
+                                    <div id="formularioParte06">
+                                        <br>
+                                        <legend id="subTitulo">Plano de Financeiro</legend>
+
+                                        <div title="Insira as Fontes de receita" class="col-md-12">
+                                            <b>Fontes de receita* <a title="Ajuda com preenchimento de Fontes de Receitas" class="ui-commandlink ui-widget" id="formulario_cadastro_projeto:j_idt146" aria-label="Ajuda com preenchimento de Fontes de Receitas" onclick='PrimeFaces.ab({s:"formulario_cadastro_projeto:j_idt146"});return false;' href="#">(?)</a></b><br><span id="formulario_cadastro_projeto:mensagemErroFonteReceita"></span><br>
+                                            Qual o modelo de receita (Freemium, An\C3\BAncios, Assinatura mensal, Assinatura por servi\C3\A7os,...)? <br>
+                                            Qual segmento de cliente pagar\C3\A1? Haver\C3\A1 segmentos de clientes com gratuidade?
+                                            <textarea name="formulario_cadastro_projeto:fontesDeReceita" class="form-control semResize" id="formulario_cadastro_projeto:fontesDeReceita" onblur="verificaPlanoFinanceiro()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_fontesReceitas formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroFonteReceita',{'onevent':funcaoAjaxSalvo})" rows="4"></textarea>
+                                            <br>
+                                        </div>
+                                        <div title="Insira a Estrutura de custos" class="col-md-12">
+                                            <b>Estrutura de custos* </b><br><span id="formulario_cadastro_projeto:mensagemErroEstruturaCusto"></span><br>
+                                            Quais s\C3\A3o os custos mais importantes inerentes ao nosso modelo de neg\C3\B3cio? Quais s\C3\A3o os recursos chave mais caros? Quais s\C3\A3o as atividades chave mais caras?
+                                            <textarea name="formulario_cadastro_projeto:estruturaCustos" class="form-control semResize" id="formulario_cadastro_projeto:estruturaCustos" onblur="verificaPlanoFinanceiro()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_estutCusto formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroEstruturaCusto',{'onevent':funcaoAjaxSalvo})" rows="6"></textarea>
+
+                                            <br>
+                                        </div>
+                                        <div title="Insira o Investimento inicial" class="col-md-12">
+                                            <b>Investimento inicial* </b><br><span id="formulario_cadastro_projeto:mensagemErroInvestimentoInicial"></span><br>
+                                            Quanto de recurso ser\C3\A1 necess\C3\A1rio para iniciar?
+                                            <textarea name="formulario_cadastro_projeto:investimentoInicial" class="form-control semResize" id="formulario_cadastro_projeto:investimentoInicial" onblur="verificaPlanoFinanceiro()" onchange="mojarra.ab(this,event,'change','@form','form_revisao:revisao_invsInicial formulario_cadastro_projeto:mensagemSalvamento formulario_cadastro_projeto:mensagemErroInvestimentoInicial',{'onevent':funcaoAjaxSalvo})" rows="4"></textarea>
+                                            <br>
+                                        </div><span class="col-md-12" id="formulario_cadastro_projeto:panelCustoFixo">
+                                            <b>Custos fixos*</b><br>
+                                            Obrigat\C3\B3rios:<br> 
+                                            - Pr\C3\B3-Labore (remunera\C3\A7\C3\A3o dos s\C3\B3cios que trabalham na empresa);<br>
+                                            - Taxa de Participa\C3\A7\C3\A3o na Incubadora: Valor m\C3\A9dio mensal: R$ 45,00 . Total em 6 meses: R$ 270,00.
+
+                                            <br><div class="ui-datatable ui-widget" id="formulario_cadastro_projeto:novaTabelaCustosFixos"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formulario_cadastro_projeto:novaTabelaCustosFixos_head"><tr role="row"><th class="ui-state-default" id="formulario_cadastro_projeto:novaTabelaCustosFixos:j_idt155" role="columnheader" aria-label="Nome"><span class="ui-column-title">Nome</span></th><th class="ui-state-default" id="formulario_cadastro_projeto:novaTabelaCustosFixos:j_idt159" role="columnheader" aria-label="Valor"><span class="ui-column-title">Valor</span></th><th class="ui-state-default" id="formulario_cadastro_projeto:novaTabelaCustosFixos:j_idt163" role="columnheader" aria-label="Proje\C3\A7\C3\A3o (6 meses)"><span class="ui-column-title">Proje\C3\A7\C3\A3o (6 meses)</span></th><th class="ui-state-default" id="formulario_cadastro_projeto:novaTabelaCustosFixos:j_idt165" role="columnheader" style="width: 8%;" aria-label="Op\C3\A7\C3\B5es"><span class="ui-column-title">Op\C3\A7\C3\B5es</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formulario_cadastro_projeto:novaTabelaCustosFixos_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td class="ui-editable-column" role="gridcell"><div class="ui-cell-editor" id="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt156"><div class="ui-cell-editor-output"><label class="ui-outputlabel ui-widget" id="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt157">Aluguel com o Pampatec</label></div><div class="ui-cell-editor-input"><input name="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt158" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt158" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 96%;" type="text" value="Aluguel com o Pampatec"></div></div></td><td class="ui-editable-column" role="gridcell"><div class="ui-cell-editor" id="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt160"><div class="ui-cell-editor-output"><label class="ui-outputlabel ui-widget" id="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt161">R$ 45</label></div><div class="ui-cell-editor-input"><input name="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt162" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt162" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 96%;" onkeypress="return SomenteNumero(event);" onchange='PrimeFaces.ab({s:"formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt162",e:"change",p:"formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt162",u:"formulario_cadastro_projeto:colunaValorTotalFixo"});' type="text" maxlength="6" value="45"></div></div></td><td role="gridcell"><label class="ui-outputlabel ui-widget" id="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt164">R$ 270</label></td><td role="gridcell"><div class="ui-row-editor ui-helper-clearfix" id="formulario_cadastro_projeto:novaTabelaCustosFixos:0:j_idt166"><span class="ui-icon ui-icon-pencil"></span><span class="ui-icon ui-icon-check"></span><span class="ui-icon ui-icon-close"></span></div></td></tr><tr class="ui-widget-content ui-datatable-odd" role="row" data-ri="1"><td class="ui-editable-column" role="gridcell"><div class="ui-cell-editor" id="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt156"><div class="ui-cell-editor-output"><label class="ui-outputlabel ui-widget" id="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt157">Prolabore</label></div><div class="ui-cell-editor-input"><input name="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt158" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt158" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 96%;" type="text" value="Prolabore"></div></div></td><td class="ui-editable-column" role="gridcell"><div class="ui-cell-editor" id="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt160"><div class="ui-cell-editor-output"><label class="ui-outputlabel ui-widget" id="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt161">R$ 0</label></div><div class="ui-cell-editor-input"><input name="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt162" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt162" role="textbox" aria-disabled="false" aria-readonly="false" style="width: 96%;" onkeypress="return SomenteNumero(event);" onchange='PrimeFaces.ab({s:"formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt162",e:"change",p:"formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt162",u:"formulario_cadastro_projeto:colunaValorTotalFixo"});' type="text" maxlength="6" value="0"></div></div></td><td role="gridcell"><label class="ui-outputlabel ui-widget" id="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt164">R$ 0</label></td><td role="gridcell"><div class="ui-row-editor ui-helper-clearfix" id="formulario_cadastro_projeto:novaTabelaCustosFixos:1:j_idt166"><span class="ui-icon ui-icon-pencil"></span><span class="ui-icon ui-icon-check"></span><span class="ui-icon ui-icon-close"></span></div></td></tr></tbody></table></div></div>
+
+                                            <br>
+
+                                            <div class="col-md-6"><button name="formulario_cadastro_projeto:botao_adicionar_nova_linha" title="Adicionar nova linha de custo fixo" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoPreto" id="formulario_cadastro_projeto:botao_adicionar_nova_linha" role="button" aria-disabled="false" onclick="PrimeFaces.bcn(this,event,[function(event){mojarra.ab('formulario_cadastro_projeto:botao_adicionar_nova_linha',event,'click','formulario_cadastro_projeto:novaTabelaCustosFixos','formulario_cadastro_projeto:novaTabelaCustosFixos formulario_cadastro_projeto:mensagemSalvamento',{'onevent':atualizaTabAjax})},function(event){PrimeFaces.ab({s:&quot;formulario_cadastro_projeto:botao_adicionar_nova_linha&quot;});return false;}]);" type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-plus-circle"></span><span class="ui-button-text ui-c">Adicionar Linha</span></button>
+
+                                            </div>
+
+                                            <div align="center" class="col-md-6 text-center"><div class="ui-datatable ui-widget" id="formulario_cadastro_projeto:colunaValorTotalFixo"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formulario_cadastro_projeto:colunaValorTotalFixo_head"><tr role="row"><th class="ui-state-default" id="formulario_cadastro_projeto:colunaValorTotalFixo:j_idt171" role="columnheader" aria-label="Proje\C3\A7\C3\A3o total de custos fixos (6 meses)"><span class="ui-column-title">Proje\C3\A7\C3\A3o total de custos fixos (6 meses)</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formulario_cadastro_projeto:colunaValorTotalFixo_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell"><label class="ui-outputlabel ui-widget" id="formulario_cadastro_projeto:colunaValorTotalFixo:0:j_idt172">R$ 270</label></td></tr></tbody></table></div></div>
+                                            </div>
+
+
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br></span>
+
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-12" style="background-color: black;"></div>
+                                        <br>
+                                        <div class="col-md-12"></div><span class="col-md-12" id="formulario_cadastro_projeto:panel_custo_variavel">
+                                            <br>
+                                            <b>Custos vari\C3\A1veis* </b><br>
+                                            Impostos, combust\C3\ADvel, mat\C3\A9ria-prima, comiss\C3\A3o para vendedor... 
+                                            <!--   &lt;f:ajax execute="@form" event="change" listener="#/{projetoBean.salvarProjeto()}"/&gt;-->
+
+                                            <br><div class="ui-datatable ui-widget" id="formulario_cadastro_projeto:novaTabelaCustosVariaveis"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formulario_cadastro_projeto:novaTabelaCustosVariaveis_head"><tr role="row"><th class="ui-state-default" id="formulario_cadastro_projeto:novaTabelaCustosVariaveis:j_idt176" role="columnheader" aria-label="Nome"><span class="ui-column-title">Nome</span></th><th class="ui-state-default" id="formulario_cadastro_projeto:novaTabelaCustosVariaveis:j_idt180" role="columnheader" aria-label="Valor"><span class="ui-column-title">Valor</span></th><th class="ui-state-default" id="formulario_cadastro_projeto:novaTabelaCustosVariaveis:j_idt184" role="columnheader" aria-label="Proje\C3\A7\C3\A3o (6 meses)"><span class="ui-column-title">Proje\C3\A7\C3\A3o (6 meses)</span></th><th class="ui-state-default" id="formulario_cadastro_projeto:novaTabelaCustosVariaveis:j_idt186" role="columnheader" style="width: 8%;" aria-label="Op\C3\A7\C3\B5es"><span class="ui-column-title">Op\C3\A7\C3\B5es</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formulario_cadastro_projeto:novaTabelaCustosVariaveis_data"><tr class="ui-widget-content ui-datatable-empty-message"><td colspan="4">Nenhum registro encontrado.</td></tr></tbody></table></div></div>
+                                            <br>
+                                            <div class="col-md-6"><button name="formulario_cadastro_projeto:botao_adicionar_nova_linhaVariavel" title="Adicionar nova linha de custo vari\C3\A1vel" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoPreto" id="formulario_cadastro_projeto:botao_adicionar_nova_linhaVariavel" role="button" aria-disabled="false" onclick="PrimeFaces.bcn(this,event,[function(event){mojarra.ab('formulario_cadastro_projeto:botao_adicionar_nova_linhaVariavel',event,'click','formulario_cadastro_projeto:novaTabelaCustosVariaveis','formulario_cadastro_projeto:novaTabelaCustosVariaveis formulario_cadastro_projeto:mensagemSalvamento',{'onevent':atualizaTabAjax})},function(event){PrimeFaces.ab({s:&quot;formulario_cadastro_projeto:botao_adicionar_nova_linhaVariavel&quot;});return false;}]);" type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-plus-circle"></span><span class="ui-button-text ui-c">Adicionar Linha</span></button>
+                                            </div>
+
+                                            <div align="center" class="col-md-6 text-center"><div class="ui-datatable ui-widget" id="formulario_cadastro_projeto:colunaValorTotalVariavel"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formulario_cadastro_projeto:colunaValorTotalVariavel_head"><tr role="row"><th class="ui-state-default" id="formulario_cadastro_projeto:colunaValorTotalVariavel:j_idt192" role="columnheader" aria-label="Proje\C3\A7\C3\A3o total de custos vari\C3\A1veis (6 meses)"><span class="ui-column-title">Proje\C3\A7\C3\A3o total de custos vari\C3\A1veis (6 meses)</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formulario_cadastro_projeto:colunaValorTotalVariavel_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell"><label class="ui-outputlabel ui-widget" id="formulario_cadastro_projeto:colunaValorTotalVariavel:0:j_idt193">R$ 0</label></td></tr></tbody></table></div></div>
+                                            </div>
+
+                                            <br>
+                                            <br>
+
+                                            <!--  &lt;h:message class="mensagemErro" for="custosvariaveis"/&gt;-->
+
+                                            <br>
+                                            <br></span>
+
+                                        <div class="col-md-12 text-center"><button name="formulario_cadastro_projeto:botaoSalvar6" title="Salvar Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formulario_cadastro_projeto:botaoSalvar6" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){infoSalvar()},function(event){PrimeFaces.ab({s:"formulario_cadastro_projeto:botaoSalvar6"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Plano de Neg\C3\B3cio</span></button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Fim da sexta parte do formul&aacute;rio -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" type="hidden" value="-4201201997204598390:-4702427498348075658" autocomplete="off">
+</form>
+
+            <!-- SE&Ccedil;&Atilde;O DE APRESENTA&Ccedil;&Atilde;O DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
+<form name="formEquipe" id="formEquipe" action="/GerenciadorPampatec/view/empreendedor/enviarProjeto.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="formEquipe" type="hidden" value="formEquipe">
+
+
+                <div class="classeConteudo esconder-div" id="formParte01">
+                    <br>
+                    <div class="col-md-12 form-horizontal well bs-component">
+
+                        <h1>Cadastro - Plano de Neg\C3\B3cio</h1>
+                        <div id="formularioParte01">
+                            <legend id="subTitulo" style="color: rgb(114, 116, 118);">Minha equipe</legend>                                
+
+
+                            <div class="col-md-12">
+                                    <b>Empreendedores </b><br>
+                                    Informe os e-mails de quem est\C3\A1 propondo o empreendimento:
+                                    <br>
+                                    <div class="row">
+                                        <div title="Digite o e-mail de quem est\C3\A1 propondo o empreendimento" class="col-md-9"><span class="ui-autocomplete autoCompletar" id="formEquipe:autocomplete" role="application" style="width: 100%;"><input name="formEquipe:autocomplete_input" class="ui-autocomplete-input ui-inputfield ui-widget ui-state-default ui-corner-all ui-state-error" id="formEquipe:autocomplete_input" role="textbox" aria-disabled="false" aria-readonly="false" aria-required="true" aria-autocomplete="listbox" type="text" autocomplete="off"><span class="ui-autocomplete-status ui-helper-hidden-accessible" role="status" aria-live="polite"></span></span>
+                                        </div>
+                                        <div class="col-md-3"><button name="formEquipe:j_idt203" title="Adicionar e-mail" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoPreto" id="formEquipe:j_idt203" role="button" aria-disabled="false" onclick="PrimeFaces.bcn(this,event,[function(event){mojarra.ab('formEquipe:j_idt203',event,'click','formEquipe:autocomplete','formEquipe:tabelaEmpreendedores formEquipe:mensagemErroEquipe formEquipe:autocomplete')},function(event){PrimeFaces.ab({s:&quot;formEquipe:j_idt203&quot;});return false;}]);" type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-plus-circle"></span><span class="ui-button-text ui-c">Adicionar</span></button>
+                                        </div>
+                                    </div><span id="formEquipe:mensagemErroEquipe"></span>
+                                <br><br><div class="ui-datatable ui-widget" id="formEquipe:tabelaEmpreendedores"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="formEquipe:tabelaEmpreendedores_head"><tr role="row"><th class="ui-state-default" id="formEquipe:tabelaEmpreendedores:j_idt206" role="columnheader" aria-label="E-mail"><span class="ui-column-title">E-mail</span></th><th class="ui-state-default" id="formEquipe:tabelaEmpreendedores:j_idt209" role="columnheader" aria-label="Status do Cadastro"><span class="ui-column-title">Status do Cadastro</span></th><th class="ui-state-default" id="formEquipe:tabelaEmpreendedores:j_idt210" role="columnheader" aria-label="Categoria"><span class="ui-column-title">Categoria</span></th><th class="ui-state-default" id="formEquipe:tabelaEmpreendedores:j_idt211" role="columnheader" aria-label="A\C3\A7\C3\A3o"><span class="ui-column-title">A\C3\A7\C3\A3o</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="formEquipe:tabelaEmpreendedores_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell">testetestezin@gmail.com
+                                        <!--&lt;h:outputText value="" /&gt;-->
+                                        <!--&lt;h:outputText value="#//{projetoBean.projeto.empreendedores}" /&gt;--></td><td role="gridcell"><span id="formEquipe:tabelaEmpreendedores:0:statusEmpreendedor">Cadastro Completo</span></td><td role="gridcell"><span id="formEquipe:tabelaEmpreendedores:0:tipoEmpreendedor">Empreendedor Correspondente</span></td><td role="gridcell">
+
+                                        <!--&lt;h:commandButton  class="btn btn-default" value="Deletar" action="#/{projetoBean.deletarEmpreendedor()}" disabled="#/{projetoBean.verificarEmpreendedor(empreendedor)}"&gt;--><button name="formEquipe:tabelaEmpreendedores:0:botaoExcluirEmpreendedor" title="Remover este empreendedor" disabled="disabled" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-state-disabled botaoBase botaoVermelho" id="formEquipe:tabelaEmpreendedores:0:botaoExcluirEmpreendedor" role="button" aria-disabled="true" type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-times-circle"></span><span class="ui-button-text ui-c">Remover</span></button></td></tr><tr class="ui-widget-content ui-datatable-odd" role="row" data-ri="1"><td role="gridcell">fulaninhodoteste@gmail.com
+                                        <!--&lt;h:outputText value="" /&gt;-->
+                                        <!--&lt;h:outputText value="#//{projetoBean.projeto.empreendedores}" /&gt;--></td><td role="gridcell"><span id="formEquipe:tabelaEmpreendedores:1:statusEmpreendedor">Cadastro Incompleto</span></td><td role="gridcell"><span id="formEquipe:tabelaEmpreendedores:1:tipoEmpreendedor">Empreendedor Observador</span></td><td role="gridcell">
+
+                                        <!--&lt;h:commandButton  class="btn btn-default" value="Deletar" action="#/{projetoBean.deletarEmpreendedor()}" disabled="#/{projetoBean.verificarEmpreendedor(empreendedor)}"&gt;--><button name="formEquipe:tabelaEmpreendedores:1:botaoExcluirEmpreendedor" title="Remover este empreendedor" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVermelho" id="formEquipe:tabelaEmpreendedores:1:botaoExcluirEmpreendedor" role="button" aria-disabled="false" onclick="PrimeFaces.bcn(this,event,[function(event){mojarra.ab('formEquipe:tabelaEmpreendedores:1:botaoExcluirEmpreendedor',event,'click','formEquipe:botaoExcluirEmpreendedor','formEquipe:tabelaEmpreendedores')},function(event){PrimeFaces.ab({s:&quot;formEquipe:tabelaEmpreendedores:1:botaoExcluirEmpreendedor&quot;});return false;}]);" type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-times-circle"></span><span class="ui-button-text ui-c">Remover</span></button></td></tr></tbody></table></div></div>
+                            </div>
+
+                            <div class="col-md-12 text-center text-center">
+                                <br><button name="formEquipe:botaoSalvar1" title="Salvar Equipe e prosseguir com elabora\C3\A7\C3\A3o do plano" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="formEquipe:botaoSalvar1" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){infoSalvarEquipe()},function(event){PrimeFaces.ab({s:"formEquipe:botaoSalvar1"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span class="ui-button-text ui-c">Salvar Equipe e Prosseguir</span></button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:2" type="hidden" value="-4201201997204598390:-4702427498348075658" autocomplete="off">
+</form>
+            <!-- FIM SE&Ccedil;&Atilde;O DE APRESENTA&Ccedil;&Atilde;O DA DIV REFERENTE AOS PREENCHIMENTO DA EQUIPE -->
+
+            <!--INICIO DA DIV DE SUBMISS&Atilde;O -->
+            <div class="classeConteudo esconder-div" id="divSubmeterPlano">
+<form name="form_enviar_projeto" id="form_enviar_projeto" action="/GerenciadorPampatec/view/empreendedor/enviarProjeto.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="form_enviar_projeto" type="hidden" value="form_enviar_projeto">
+
+                    <br>
+                    <div id="formSubmeterPlano">
+                        <div class="tab-pane fade active in well bs-component">
+                            <h1>Cadastro - Plano de Neg\C3\B3cio</h1>
+                            <div id="formularioParte01">
+                                <legend id="subTitulo">Submiss\C3\A3o de Plano de Neg\C3\B3cio</legend>                                
+
+                                <div class="well">
+                                    <strong class="text-danger">Aten\C3\A7\C3\A3o</strong> Teste,
+                                    ao clicar no bot\C3\A3o <strong><u>Submeter Plano de Neg\C3\B3cio</u></strong>
+                                    o seu Plano de Neg\C3\B3cio ser\C3\A1 enviado para realiza\C3\A7\C3\A3o da pr\C3\A9-avalia\C3\A7\C3\A3o, com isto, voc\C3\AA n\C3\A3o poder\C3\A1 mais
+                                    realizar novas edi\C3\A7\C3\B5es neste Plano de Neg\C3\B3cio.
+                                </div>
+                                <div class="text-center">
+                                    <br>
+                                        <!-- JS para verificar chamar as fun&ccedil;&otilde;es de atualiza&ccedil;&atilde;o no workflow
+                                        superior e desabilita&ccedil;&atilde;o dos bot&otilde;es do workflow vertical referente 
+                                        a etapa de ELABORA&Ccedil;&Atilde;O --><button name="form_enviar_projeto:j_idt221" title="Submeter Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="form_enviar_projeto:j_idt221" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){infoSubmeter()},function(event){PrimeFaces.ab({s:"form_enviar_projeto:j_idt221"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-paper-plane-o"></span><span class="ui-button-text ui-c">Submeter Plano de Neg\C3\B3cio</span></button>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:3" type="hidden" value="-4201201997204598390:-4702427498348075658" autocomplete="off">
+</form>
+            </div>
+
+            <!-- FIM DA DIV DE SUBMISS&Atilde;O -->
+
+
+            <!-- INICIO DA PARTE DE REVIS&Atilde;O -->
+            <div class="conteudoDaRevisao">
+<form name="form_revisao" id="form_revisao" action="/GerenciadorPampatec/view/empreendedor/enviarProjeto.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="form_revisao" type="hidden" value="form_revisao">
+
+                    <div class="classeConteudo esconder-div" id="div_revisar_plano">
+                        <br>
+                        <div class="col-md-11 divImprimir">
+                            <div id="cabecalho_revisao">
+                                <br>
+                                <div id="descricao_edital">
+                                    <p id="titulo_cabecalho">
+                                        EDITAL DE FLUXO CONT\C3\8DNUO<br>
+                                        PROCESSO SELETIVO PARA INGRESSO NA <br>
+                                        INCUBADORA TECNOL\C3\93GICA PAMPATEC ALEGRETE
+                                    </p>
+                                    <p style="font-weight: bold;">PLANO DE NEG\C3\93CIO</p>
+                                    <p><b>Enviado em: </b><span id="form_revisao:revisao_dataEnvio">Plano n\C3\A3o enviado.</span></p>
+                                </div>
+                                <div id="identificacao_empresa">
+                                    <p><b>Nome da Empresa ou do Projeto: </b><span id="form_revisao:revisao_nomeEmpresa">Novo plano de neg\C3\B3cio sem nome</span></p>
+                                    <div class="col-md-12">
+                                        <div class="col-md-1"></div> 
+                                        <div align="center" class="col-md-10 "><table>
+<thead>
+<tr>
+<th class="textoCentralizado" scope="col"><b>EMPREENDEDORES</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span id="form_revisao:j_idt228:0:revisao_nomeEmpreendedor">Teste</span></td>
+</tr>
+<tr>
+<td><span id="form_revisao:j_idt228:1:revisao_nomeEmpreendedor"></span></td>
+</tr>
+</tbody>
+</table>
+
+                                        </div>
+                                        <div class="col-md-1"></div> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="corpo_documento">
+                                <hr>
+                                <br>
+
+                                <div class="corpoDoTexto" id="part_negocio">
+                                    <p><h1><b>O NEG\C3\93CIO</b></h1><p></p>
+                                    <p><h2><b>Segmento de clientes:</b> <br><span id="form_revisao:revisao_segmento"></span></h2><p></p>
+                                    <p><h2><b>Proposta de valor:</b> <br><span id="form_revisao:revisao_proposta"></span></h2><p></p>
+                                    <p><h2><b>Atividades Chave:</b> <br><span id="form_revisao:revisao_atividades"></span></h2><p></p>
+                                </div>
+
+                                <div class="corpoDoTexto" id="part_AnaliseMercado">
+                                    <p><h1><b>AN\C3\81LISE DE MERCADO</b></h1><p></p>
+                                    <p><h2><b>Rela\C3\A7\C3\B5es com clientes:</b> <br><span id="form_revisao:revisao_ralacoes"></span></h2><p></p>
+                                    <p><h2><b>Parcerias chaves:</b> <br><span id="form_revisao:revisao_parcerias"></span></h2><p></p>
+                                    <p><h2><b>Canais:</b> <br><span id="form_revisao:revisao_canais"></span></h2><p></p>
+                                    <p><h2><b>Recursos principais:</b> <br><span id="form_revisao:revisao_recursos"></span></h2><p></p>
+                                    <p><h2><b>Concorrentes:</b> <br><span id="form_revisao:revisao_concorrentes"></span></h2><p></p>
+                                </div>
+
+                                <div class="corpoDoTexto" id="part_ProdutoServico">
+                                    <p><h1><b>PRODUTO OU SERVI\C3\87O</b></h1><p></p>
+                                    <p><h2><b>Est\C3\A1gio de evolu\C3\A7\C3\A3o:</b> <br><span id="form_revisao:revisao_estagio">Ideia B\C3\A1sica</span></h2><p></p>
+                                    <p><h2><b>Tecnologia e processos (n\C3\A3o poluentes):</b> <br><span id="form_revisao:revisao_tecnologia"></span></h2><p></p>
+                                    <p><h2><b>Potencial de inova\C3\A7\C3\A3o tecnol\C3\B3gica:</b> <br><span id="form_revisao:revisao_potencial"></span></h2><p></p>
+                                    <p><h2><b>Aplica\C3\A7\C3\B5es:</b> <br><span id="form_revisao:revisao_aplicacoes"></span></h2><p></p>
+                                    <p><h2><b>Dificuldades esperadas:</b> <br><span id="form_revisao:revisao_dificuldades"></span></h2><p></p>
+                                    <p><h2><b>Intera\C3\A7\C3\A3o entre empresa e Universidade:</b> <br><span id="form_revisao:revisao_interacaoEmpUni"></span></h2><p></p>
+                                    <p><h2><b>Intera\C3\A7\C3\A3o entre empresa, comunidade e governo:</b> <br><span id="form_revisao:revisao_interacaoEmpGov"></span></h2><p></p>
+                                    <p><h2><b>Infra-estrutura necess\C3\A1ria para o desenvolvimento e produ\C3\A7\C3\A3o:</b> <br><span id="form_revisao:revisa_infra"></span></h2><p></p>
+                                </div>
+
+                                <div class="corpoDoTexto" id="part_GestaoPessoas">
+                                    <p><h1><b>GEST\C3\83O DE PESSOAS</b></h1><p></p><table>
+<tbody>
+<tr>
+<td>
+                                            <h2><b>Detalhes do Empreendedor Teste</b></h2>
+
+                                            <h2><b>Forma\C3\A7\C3\A3o do S\C3\B3cio: </b>Teste</h2>
+
+                                            <h2><b>Experi\C3\AAncia Profissional do S\C3\B3cio: </b>Teste</h2></td>
+</tr>
+<tr>
+<td>
+                                            <h2><b>Detalhes do Empreendedor </b></h2>
+
+                                            <h2><b>Forma\C3\A7\C3\A3o do S\C3\B3cio: </b></h2>
+
+                                            <h2><b>Experi\C3\AAncia Profissional do S\C3\B3cio: </b></h2></td>
+</tr>
+</tbody>
+</table>
+
+
+                                    <p><h2><b>Descri\C3\A7\C3\A3o da participa\C3\A7\C3\A3o acionaria:</b> <br><span id="form_revisao:revisao_partAcionaria"></span></h2><p></p>
+
+                                    <p><h2><b>Potencial de gera\C3\A7\C3\A3o de emprego e renda:</b> <br><span id="form_revisao:revisao_potEmpRenda"></span></h2><p></p>
+
+                                </div>
+
+                                <div class="corpoDoTexto" id="part_PlanoFinanc">
+                                    <p><h1><b>PLANO FINANCEIRO</b></h1><p></p>
+
+                                    <p><h2><b>Fontes de receita:</b> <br><span id="form_revisao:revisao_fontesReceitas"></span></h2><p></p>
+
+                                    <p><h2><b>Estrutura de custos:</b> <br><span id="form_revisao:revisao_estutCusto"></span></h2><p></p>
+
+                                    <p><h2><b>Investimento In\C3\ADcial:</b> <br><span id="form_revisao:revisao_invsInicial"></span></h2><p></p>
+
+
+                                    <div id="part_EstrutCusto">
+
+                                        <p><h1><b>CUSTOS FIXOS</b></h1><p></p><div class="ui-datatable ui-widget" id="form_revisao:revisao_custoFixo"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="form_revisao:revisao_custoFixo_head"><tr role="row"><th class="ui-state-default" id="form_revisao:revisao_custoFixo:j_idt263" role="columnheader" aria-label="Descri\C3\A7\C3\A3o "><span class="ui-column-title">Descri\C3\A7\C3\A3o </span></th><th class="ui-state-default" id="form_revisao:revisao_custoFixo:j_idt265" role="columnheader" aria-label="Valor M\C3\A9dio Mensal"><span class="ui-column-title">Valor M\C3\A9dio Mensal</span></th><th class="ui-state-default" id="form_revisao:revisao_custoFixo:j_idt267" role="columnheader" aria-label="Proje\C3\A7\C3\A3o em 6 Meses"><span class="ui-column-title">Proje\C3\A7\C3\A3o em 6 Meses</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="form_revisao:revisao_custoFixo_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell">Aluguel com o Pampatec</td><td role="gridcell">R$ 45</td><td role="gridcell">R$ 270</td></tr><tr class="ui-widget-content ui-datatable-odd" role="row" data-ri="1"><td role="gridcell">Prolabore</td><td role="gridcell">R$ 0</td><td role="gridcell">R$ 0</td></tr></tbody></table></div></div>
+
+                                        <br>     
+                                        <!--&lt;div class="col-md-6 text-center" align="center" &gt;--><div class="ui-datatable ui-widget text-center " id="form_revisao:colunaValorTotalFixoVisualizar" style="width: 40%; margin-right: auto; margin-left: auto;"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="form_revisao:colunaValorTotalFixoVisualizar_head"><tr role="row"><th class="ui-state-default" id="form_revisao:colunaValorTotalFixoVisualizar:j_idt270" role="columnheader" aria-label="Proje\C3\A7\C3\A3o de Custos Fixos Total"><span class="ui-column-title">Proje\C3\A7\C3\A3o de Custos Fixos Total</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="form_revisao:colunaValorTotalFixoVisualizar_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell"><label class="ui-outputlabel ui-widget" id="form_revisao:colunaValorTotalFixoVisualizar:0:j_idt271" style="text-align: center;">R$ 270</label></td></tr></tbody></table></div></div>
+                                        <!--&lt;/div&gt;-->
+
+                                        <p><h1><b>CUSTOS VARI\C3\81VEIS</b></h1><p></p><div class="ui-datatable ui-widget" id="form_revisao:revisao_custoVariavel"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="form_revisao:revisao_custoVariavel_head"><tr role="row"><th class="ui-state-default" id="form_revisao:revisao_custoVariavel:j_idt273" role="columnheader" aria-label="Descri\C3\A7\C3\A3o "><span class="ui-column-title">Descri\C3\A7\C3\A3o </span></th><th class="ui-state-default" id="form_revisao:revisao_custoVariavel:j_idt275" role="columnheader" aria-label="Valor M\C3\A9dio Mensal"><span class="ui-column-title">Valor M\C3\A9dio Mensal</span></th><th class="ui-state-default" id="form_revisao:revisao_custoVariavel:j_idt277" role="columnheader" aria-label="Proje\C3\A7\C3\A3o em 6 Meses "><span class="ui-column-title">Proje\C3\A7\C3\A3o em 6 Meses </span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="form_revisao:revisao_custoVariavel_data"><tr class="ui-widget-content ui-datatable-empty-message"><td colspan="3">Nenhum registro encontrado.</td></tr></tbody></table></div></div>
+                                        <br>
+                                        <!--&lt;div class="col-md-6 text-center" align="center" &gt;--><div class="ui-datatable ui-widget text-center" id="form_revisao:colunaValorTotalVariavelVisualizar" style="width: 40%; margin-right: auto; margin-left: auto;"><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="form_revisao:colunaValorTotalVariavelVisualizar_head"><tr role="row"><th class="ui-state-default" id="form_revisao:colunaValorTotalVariavelVisualizar:j_idt280" role="columnheader" aria-label="Proje\C3\A7\C3\A3o de Custos Vari\C3\A1veis Total"><span class="ui-column-title">Proje\C3\A7\C3\A3o de Custos Vari\C3\A1veis Total</span></th></tr></thead><tbody class="ui-datatable-data ui-widget-content" id="form_revisao:colunaValorTotalVariavelVisualizar_data"><tr class="ui-widget-content ui-datatable-even" role="row" data-ri="0"><td role="gridcell"><label class="ui-outputlabel ui-widget" id="form_revisao:colunaValorTotalVariavelVisualizar:0:j_idt281">R$ 0</label></td></tr></tbody></table></div></div>
+                                        <!--&lt;/div&gt;-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+
+
+
+                        <div class="noprint text-center">
+                            <br>
+                            <br><button name="form_revisao:j_idt283" title="Imprimir Plano de Neg\C3\B3cio" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left botaoBase botaoVerde" id="form_revisao:j_idt283" role="button" aria-disabled="false" onclick='PrimeFaces.bcn(this,event,[function(event){imprimirPaginaHtml();},function(event){PrimeFaces.ab({s:"form_revisao:j_idt283"});return false;}]);' type="submit"><span class="ui-button-icon-left ui-icon ui-c fa fa-print"></span><span class="ui-button-text ui-c">Imprimir plano de neg\C3\B3cio</span></button>
+                            <br><br>
+                        </div>
+
+
+                    </div><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:4" type="hidden" value="-4201201997204598390:-4702427498348075658" autocomplete="off">
+</form>
+            </div>
+
+            <script>
+                function imprimirPaginaHtml() {
+                    window.print();
+                }
+            </script>
+    <div id="textarea_simulator" style="left: 0px; top: 0px; visibility: hidden; position: absolute;"></div><div class="ui-autocomplete-panel ui-widget-content ui-corner-all ui-helper-hidden ui-shadow" id="formEquipe:autocomplete_panel"></div></body></html>
