@@ -1,0 +1,250 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="j_idt2"><link href="/GerenciadorPampatec/javax.faces.resource/theme.css.jsf?ln=primefaces-aristo" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/fa/font-awesome.css.jsf?ln=primefaces&amp;v=6.0" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/bootstrap.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/sweetalert.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/botaoCadastroNovoProjeto.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/outro.css.jsf?ln=css" rel="stylesheet" type="text/css"><link href="/GerenciadorPampatec/javax.faces.resource/projeto.css.jsf?ln=css" rel="stylesheet" type="text/css"><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/jquery/jquery-plugins.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/core.js.jsf?ln=primefaces&amp;v=6.0" type="text/javascript"></script><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='pt_BR';}</script><script src="/GerenciadorPampatec/javax.faces.resource/jquery-2.2.2.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/bootstrap-3.3.6.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/sweetalert.min.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/js.js.jsf?ln=js" type="text/javascript"></script><script src="/GerenciadorPampatec/javax.faces.resource/sessionManager.js.jsf?ln=js" type="text/javascript"></script>         
+
+        <title>P\C3\A1gina Principal - Empreendedor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            @font-face {
+                font-family: lilyUPC;
+                src: url(lily.ttf);
+            }
+        </style>
+        <script>
+            var tempoMaxSessao = 1800;
+
+            /**
+             * 
+             * @returns {undefined}
+             */
+            setTimeout(function () {
+                console.log("Mata a sess\C3\A3o e chama o Bah!");
+                showSweetAlert();
+            }, (tempoMaxSessao - 1) * 1000);
+
+            /**
+             * <p> M\C3\A9todo de gatilho para invalidar a sess\C3\A3o do usu\C3\A1rio, 
+             * caso essa ainda exista indevidamente.</p>
+             * 
+             * @returns {undefined}
+             */
+            function triggerParaInvalidarSessao() {
+                // O metodo \C3\A9 chamado no sweetAlert somente para ativar um controle remoto
+                // esse controle remote aciona um metodo para invalidar a sess\C3\A3o quando o "bah!" \C3\A9 chamado.
+            }
+        </script>
+        <!--&lt;meta http-equiv="refresh" content="#-{userBean.tempoMaximoSessao()};url=/GerenciadorPampatec/loginEmpreendedor.jsf"/&gt;-->
+            <!--
+                &lt;h:outputStylesheet library="css" name="flipclock.css" /&gt;
+            --></head>
+    <body>
+        <!-- In&iacute;cio do menu superior -->
+<form name="menuSuperior" id="menuSuperior" action="/GerenciadorPampatec/view/empreendedor/homeEmpreendedor.jsf" enctype="application/x-www-form-urlencoded" method="post">
+<input name="menuSuperior" type="hidden" value="menuSuperior">
+
+
+            <!-- Controle Remoto que invalida a sess&atilde;o, ele &eacute; acionado quando o sweetAlert (Bah!) &eacute; chamado --><script type="text/javascript">triggerParaInvalidarSessao = function() {PrimeFaces.ab({s:"menuSuperior:j_idt17",f:"menuSuperior",pa:arguments[0]});}</script>
+            <!-- Fim do Controle Remoto--><!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<input name="menuSuperior:menuSuperior" type="hidden" value="menuSuperior:menuSuperior">
+
+        
+        <style>
+            .botaoDropDown{
+            border: none; 
+            width: 100%; 
+            background-color: #ffffff;
+            color: #000000;
+            padding-bottom: 3px;
+            padding-top: 3px;
+            text-align: center;
+            }            
+            .botaoDropDown:hover{
+            background-color: #00A859;
+            color: #ffffff;
+            border-radius: 3px;
+            }
+            
+        </style>
+        
+        
+        
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="col-md-7">
+                    <h4 style="color: white;">Bem-vindo(a) Teste!</h4>
+                </div>
+                <div class="col-md-5">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+<script src="/GerenciadorPampatec/javax.faces.resource/jsf.js.jsf?ln=javax.faces" type="text/javascript"></script>
+<a class="aComoBotaoMenu" onclick="mojarra.jsfcljs(document.getElementById('menuSuperior:menuSuperior'),{'menuSuperior:menuSuperior:j_idt24':'menuSuperior:menuSuperior:j_idt24'},'');return false" href="#">In\C3\ADcio</a>
+                        </li>
+                        <!--
+                        &lt;li class=""&gt;
+                            &lt;h:outputLink class="dropdown-toggle" onclick="exibeNotificacoes()" value="#" id="barraNotificacoes"&gt;
+                                Notifica&ccedil;&otilde;es
+                                &lt;span class="badge"&gt;
+                                    &lt;h:outputText value="#-{notificacoesEmpreendedorBean.quantidadeNotificacoes}"&gt;&lt;/h:outputText&gt; 
+                                &lt;/span&gt;
+                                &lt;f:ajax execute="@form" event="click" listener="#-{notificacoesEmpreendedorBean.mudaStatusNotificacao()}"/&gt;
+                            &lt;/h:outputLink&gt;
+                        &lt;/li&gt;
+                        -->
+                        <li class="dropdown">
+                            <a class="aComoBotaoMenu" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Planos de Neg\C3\B3cio
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><input name="menuSuperior:menuSuperior:j_idt26" class="botaoDropDown" type="submit" value="Novo Plano">
+                                </li>
+                                <li><input name="menuSuperior:menuSuperior:j_idt28" class="botaoDropDown" type="submit" value="Lista de Planos">
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a class="aComoBotaoMenu" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Op\C3\A7\C3\B5es <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><input name="menuSuperior:menuSuperior:j_idt30" class="botaoDropDown" type="submit" value="Perfil">
+                                </li>
+                                <li><input name="menuSuperior:menuSuperior:j_idt32" class="botaoDropDown" type="submit" value="Sair">
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Inicio dos Modais apresentadas -->
+
+        <!-- Modal com as NOTIFICA&Ccedil;&Otilde;ES do usu&aacute;rio 
+        &lt;div class="modal fade" id="modalNotificacoes" role="dialog"&gt;
+
+            &lt;div class="modal-dialog"&gt;
+
+                &lt;div class="panel panel-success"&gt;
+                    &lt;div class="panel-heading"&gt;
+                        &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
+                        &lt;h3 class="panel-title"&gt;Notifica&ccedil;&otilde;es&lt;/h3&gt;
+                    &lt;/div&gt;
+                    &lt;div class="panel-body" align="center"&gt;
+                        &lt;h:dataTable id="tabelaNotificacoes" value="#-{notificacoesEmpreendedorBean.notificacoes}" var="notificacao"&gt;
+                            &lt;h:column&gt;
+                                &lt;div class="bordas"&gt;
+                                    &lt;h:outputText value="#-{notificacao.descricao}"/&gt;
+                                    &lt;a href="#-{notificacao.link}"&gt; Clique aqui &lt;/a&gt; Para ver detalhes.
+                                &lt;/div&gt;
+                            &lt;/h:column&gt;
+                        &lt;/h:dataTable&gt;
+                    &lt;/div&gt;
+                    &lt;div class="panel-footer" align="right"&gt;
+                        &lt;button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar"&gt;Voltar&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+        &lt;/div&gt;
+         Fim do Modal com as NOTIFICA&Ccedil;&Otilde;ES --><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" type="hidden" value="5794804207413452776:-4967692808381753638" autocomplete="off">
+</form>
+            <!-- Fim do menu superior -->
+
+            <!-- Inicio dos Modais apresentadas -->
+
+            <!-- Modal com as NOTIFICA&Ccedil;&Otilde;ES do usu&aacute;rio -->
+            <!--
+            &lt;div class="modal fade" id="modalNotificacoes" role="dialog"&gt;
+
+                &lt;div class="modal-dialog"&gt;
+
+                    &lt;div class="panel panel-success"&gt;
+                        &lt;div class="panel-heading"&gt;
+                            &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true"&gt;&times;&lt;/button&gt;
+                            &lt;h3 class="panel-title"&gt;Notifica&ccedil;&otilde;es&lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div class="panel-body" align="center"&gt;
+                            &lt;h:dataTable id="tabelaNotificacoes" value="#-{notificacoesEmpreendedorBean.notificacoes}" var="notificacao"&gt;
+                                &lt;h:column&gt;
+                                    &lt;div class="bordas"&gt;
+                                        &lt;h:outputText value="#-{notificacao.descricao}"/&gt;
+                                        &lt;a href="#-{notificacao.link}"&gt; Clique aqui &lt;/a&gt; Para ver detalhes.
+                                    &lt;/div&gt;
+                                &lt;/h:column&gt;
+                            &lt;/h:dataTable&gt;
+                        &lt;/div&gt;
+                        &lt;div class="panel-footer" align="right"&gt;
+
+                            &lt;button type="button" class="btn btn-success" data-dismiss="modal" aria-hidden="true" value="Voltar"&gt;Voltar&lt;/button&gt;
+
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+            &lt;/div&gt;
+            -->
+            <!-- Fim do Modal com as NOTIFICA&Ccedil;&Otilde;ES -->
+            <!-- Fim das modais apresentadas -->
+
+            <!-- Div bot&atilde;o Vizualizar/criar formulario e bot&atilde;o visualizar edital-->
+            <div class="col-md-12" style="padding-top: 1%;" text-align="center">
+
+                <div class="col-md-4">
+
+                    <div class="col-md-9" style="border-style: solid; margin-top: -2%; margin-left: -2%;">
+                        <h1 align="center">
+                            Meu Plano de Neg\C3\B3cio
+                        </h1>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+                <div class="col-md-2"><a title="Meus planos de neg\C3\B3cio" class="btn btn-success btn-lg" onclick="mojarra.jsfcljs(document.getElementById('menuSuperior'),{'menuSuperior:j_idt37':'menuSuperior:j_idt37'},'');return false" href="#">
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-text fa-3x"></i> <br>Meus Planos</label></a>
+                </div>
+
+                <div class="col-md-2"></div>
+
+                <div class="col-md-2 text-center">
+                    <a title="Processo seletivo para ingresso na incubadora tecnol\C3\B3gica PAMPATEC Alegrete" class="btn btn-success btn-lg" href="http://porteiras.s.unipampa.edu.br/pampatec/files/2015/06/Edital_186-2015_Pampatec.pdf" target="_blank"> 
+                        <label style="color: white; cursor: pointer;"><i class="fa fa-file-pdf-o fa-3x"></i> <br> Edital N. 186/2015</label>
+                    </a>
+                </div>
+
+                <div class="col-md-4"></div>
+
+            </div>
+
+            <div class="col-md-10" style="margin: 1%;"></div>
+            <!-- SE&Ccedil;&Atilde;O STARTUP UNIPAMPA HTML EXTERNO -->
+
+            <div align="center" class="col-md-12">
+                <h2 style="color: black; margin-bottom: 1%;">Processo de Incuba\C3\A7\C3\A3o StartupPampa  </h2>
+                <iframe width="100%" height="500" src="http://startuppampa.com.br/processo_incubadora/#list">
+                </iframe>
+            </div>
+
+            <!-- SE&Ccedil;&Atilde;O PARA INSERIR ALGUMA INFORMA&Ccedil;&Atilde;O, COMO O WORKFLOW HORIZONTAL -->
+            <div class="col-md-12"></div>
+            <!-- FIM DA SE&Ccedil;&Atilde;O DO WORKFLOW HORIZONTAL -->
+
+            <!-- SE&Ccedil;&Atilde;O PARA INSERIR ALGUMA INFORMA&Ccedil;&Atilde;O, COMO O WORKFLOW VERTICAL -->
+            <div class="col-md-2"></div>
+            <!-- FIM DA SER&Atilde;O DO WORKFLOW VERTICAL -->
+
+            <!-- SE&Ccedil;&Atilde;O PARA INSERIR ALGUMA INFORMA&Ccedil;&Atilde;O, COMO A DE APRESENTA&Ccedil;&Atilde;O DOS FORMUL&Aacute;RIOS -->
+            <div class="col-md-10"></div>
+            <!-- FIM DA SE&Ccedil;&Atilde;O DE APRESENTA&Ccedil;&Atilde;O DOS FORMUL&Aacute;RIOS -->
+
+            <!--
+            &lt;p:poll interval="3" update="barraNotificacoes"/&gt;
+            &lt;p:poll interval="3" update="tabelaNotificacoes"/&gt;
+            --><input name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" type="hidden" value="5794804207413452776:-4967692808381753638" autocomplete="off">
+
+        
+    
+<div id="textarea_simulator" style="left: 0px; top: 0px; visibility: hidden; position: absolute;"></div></body></html>
